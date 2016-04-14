@@ -24,16 +24,16 @@ class Anadir {
         
         $db = new Conexion();
         $perfVal=0;
-        if ($this->perfil =='Administrador/Adminsitrador'){
+        if ($this->perfil =='Adminsitrador'){
             $perfVal=1;
         }
-        else if ($this->perfil =='Gestor/Gestor'){
+        else if ($this->perfil =='Gestor'){
             $perfVal=2;
         }
-        else if ($this->perfil =='Gerente/Gerente'){
+        else if ($this->perfil =='Gerente'){
             $perfVal=3;
         }
-        else if ($this->perfil =='Auditor/Auditor'){
+        else if ($this->perfil =='Auditor'){
             $perfVal=4;
         }
         
@@ -44,17 +44,19 @@ class Anadir {
         if($existe['nick_Usuario'] != $this->user and $existe['correo_Usuario'] != $this->mailUsuario){
             
             $db -> query ("INSERT INTO Usuario (idUsuario, nick_Usuario, pass_Usuario, Perf_Usuario_idPerf_Usuario, correo_Usuario, nombreUsuario, estado) VALUES ('$this->idUsuario', '$this->user', '$this->pass', '$perfVal', '$this->mailUsuario', '$this->nombre', '$this->estado')");
-            $db -> query ("INSERT INTO Usuario (idUsuario, nick_Usuario, pass_Usuario, Perf_Usuario_idPerf_Usuario, correo_Usuario, nombreUsuario, estado) VALUES ('$this->idUsuario', '$this->user', '$this->pass', '$perfVal', '$this->mailUsuario', '$this->nombre', '$this->estado')");
         }
-        else{
-            echo 'USUARIO YA EXISTE CORRIGA EL DATO';
+        else{ 
+            
+                
+                echo '<script language="javascript">';
+                echo 'alert("message successfully sent")';
+                echo '</script>';
+                exit;
+                
         }
-
-    }
-    
-    
+        header("Location: AnadirUsuarios.html");
+        
+    }   
 }
-
-
 
 ?>
