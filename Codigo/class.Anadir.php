@@ -24,16 +24,16 @@ class Anadir {
         
         $db = new Conexion();
         $perfVal=0;
-        if ($this->perfil =='Adminsitrador'){
+        if ($this->perfil =='Administrador/Adminsitrador'){
             $perfVal=1;
         }
-        else if ($this->perfil =='Gestor'){
+        else if ($this->perfil =='Gestor/Gestor'){
             $perfVal=2;
         }
-        else if ($this->perfil =='Gerente'){
+        else if ($this->perfil =='Gerente/Gerente'){
             $perfVal=3;
         }
-        else if ($this->perfil =='Auditor'){
+        else if ($this->perfil =='Auditor/Auditor'){
             $perfVal=4;
         }
         

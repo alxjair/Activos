@@ -26,10 +26,10 @@ switch ($modo){
     case 'Recordar' :
         header('Location : OlvidoContraseña.html');
         if(isset($_POST['email'])){
-            echo 'esta definida osadsad';
+            alert("Hello! I am an alert box!!");
         }
         else
-            echo 'la cago';
+            echo 'ERROR';
     break;
     default:
        # $template =new Prinick();
