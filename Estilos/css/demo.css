@@ -1,0 +1,21 @@
+@import url('reset.css');
+/* General Demo Style */
+body{
+	color: #333;
+	font-family: Arial, sans-serif;
+	font-size: 13px;
+}
+.container{
+	position:relative;
+   
+}
+a{
+	color: #f20101;
+	text-decoration: none;
+}
+
+.content{
+	position:relative;
+
+}
+

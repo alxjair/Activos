@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">    
+    <title>Formularios Activos</title>
+    <link rel="stylesheet" href="../../Estilos/css/bootstrap.min.css">
+</head>
+
+<body>
+   <div class="container-fluid well ">
+       <img src="../../Imagenes/logoMUNDIAL.png" class="image-responsive">
+   </div>
+   
+    <div class="container well">
+        <center><h1>Registro de Activos de Informacion</h1></center>
+        <form class="form-horizontal">
+        
+        <div class="row">
+            <div class="col-sm-6">
+                <label>Codigo</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br>
+                <label>Nombre del Activo</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br>
+                <label>Propietario del Activo</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br>
+                <label>Descripcion del Activo</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br>
+                <label>Soporte Funcional</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br> 
+                
+            <label class="col-sm">Clasificacion del Activo</label> 
+                <select class="form-control" name="Clasificacion" disabled>
+                   <option value="black">APLICACION</option>
+                    <option value="black">SOFTWARE UTILITARIO</option>
+                    <option value="green">MODULO SISTEMA CORE</option>
+                    <option value="red">MANUALES Y DOCUMENTACION DE PROCESOS</option>
+                    <option value="yellow">HERRAMIENTAS DE SOFTWARE DE USUARIO FINAL (HSUF)</option>
+                    <option value="white">EQUIPOS DE COMPUTO</option>
+                    <option value="white">EQUIPOS DE COMPUTO DE USUARIO FINAL (ECUF)</option>
+                    <option value="white">INFORMACION ELECTRONICA</option>
+                    <option value="white">INFORMACION FISICA</option>
+                    <option value="white">EQUIPOS DE OFICINA</option>
+                    <option value="white">SERVICIOS (INCLUYE SERV. PUBLICOS Y SERV. CONTRATADOS)</option>
+                    <option value="white">OTROS ACTIVOS DE INFORMACION</option>
+                </select>
+                <br />
+                
+            <label class="col-sm">Area</label>
+                <select class="form-control" name="area" disabled>
+                    <option value="black">SOFTWARE UTILITARIO</option>
+                </select>
+             <br>
+                          
+             <label class="col-sm">Contenedor de Activos</label>
+                <select class="form-control" name="area" disabled>
+                    <option value="black">SI</option>
+                    <option value="green">NO</option>
+                </select>
+                <br>
+                
+             <label class="col-sm">Valor Confidencialidad</label>
+                <select class="form-control" name="area" disabled>
+                    <option value="black">CONFIDENCIAL</option>
+                    <option value="green">PRIVADO</option>
+                    <option value="red">PUBLICO</option>
+                </select>
+             <br>
+             
+             <label class="col-sm">Valor Integridad</label>
+                <select class="form-control" name="area" disabled>
+                    <option value="black">NO CRITICA</option>
+                    <option value="green">CRITICA</option>
+                </select>
+             <br>
+             
+             <label class="col-sm">Valor Entrada/Salida</label>
+                <select class="form-control" name="area" disabled>
+                    <option value="black">ENTRADA</option>
+                    <option value="green">SALIDA</option>
+                    <option value="red">ENTRADA/SALIDA</option>
+                    <option value="red">NO APLICA</option>
+                </select>
+             <br>
+            </div>
+            
+            <div class="col-sm-6">
+                <label>Remitente/Destinatario/No Aplica</label>
+                <input type="text" class="form-control" id="formGroup" disabled> 
+                <br>
+                <!-- <label>Destinatario</label>
+                <input type="text" class="form-control" id="formGroup" > 
+                <br> -->
+                <label>Ubicacion</label>
+                <input type="text" class="form-control" id="formGroup" disabled> 
+                <br>
+                <label>Custodio del Activo(Cargo-Nombre)</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br> 
+                <label>Soporte Tecnico</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br> 
+                <label>Dependencia de Otros Activos</label>
+                <input type="text" class="form-control" id="formGroup" disabled>
+                <br> 
+                               
+             <label class="col-sm">Tipo de activo</label>
+                 <select class="form-control" name="Tipo de activo" disabled>
+                    <option value="">FISICO</option>
+                    <option value="black">ELECTRONICO</option>
+                </select>
+             <br/>
+             
+             <label class="col-sm">Medio de Almacenamiento</label>
+                 <select class="form-control" name="Tipo de activo" disabled>
+                    <option value="">ELECTRONICO</option>
+                    <option value="black">FISICO</option>
+                    <option value="black">FISICO Y ELECTRONICO</option>
+                </select>
+             <br/>
+             
+            <label class="col-sm">Proceso</label>                   
+                    <select class="form-control" name="proceso" disabled>
+                    <option value="black">SOFTWARE UTILITARIO</option>
+                </select>
+                 <br/>
+                
+                <label class="col-sm">SubProceso</label>                   
+                    <select class="form-control" name="SubProceso" disabled>
+                    <option value="black">SOFTWARE UTILITARIO</option>
+                </select>
+                <br/>
+                
+            <label class="col-sm">Valor Disponibilidad</label>
+                <select class="form-control" name="area" disabled>
+                    <option value="black">INDISPENSABLE</option>
+                    <option value="green">NECESARIA</option>
+                    <option value="red">NORMAL</option>
+                </select>
+             <br>
+            </div>
+        </div>      
+                <button type="submit" class="btn btn-success" onclick="alert('Se Ha Agregado El Usuario!')">Enviar</button>
+                <button type="reset" class="btn btn-info">Limpiar</button>
+                <button type="submit" class="btn btn-default" onclick="goBack()" >Cancelar</button>
+        </form> 
+    </div> 
+    
+  <script>
+      function goBack() {
+           window.history.back();
+       }
+    </script>  
+      
+</body>
+</html>
