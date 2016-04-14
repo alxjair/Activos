@@ -16,12 +16,12 @@ switch ($modo){
         }
         else {
             
-            header('Location : Administrador.html');
+            header('Location : Administrador/Administrador.html');
             echo 'Error!';
         }
     break;
     case 'Cancelar' :
-        header('Location : Administrador.html');
+        header('Location : Administrador/Administrador.html');
     break;
     default:
        # $template =new Prinick();
