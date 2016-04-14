@@ -20,37 +20,31 @@ class Acceso {
             if ($dato['Perf_Usuario_idPerf_Usuario']== 3){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-<<<<<<< HEAD
                 header('location: location: http://localhost/Activos/Codigo/Gerente/IngresarActivos.html');
-=======
                 header('location: /Administrador/IngresarActivos.html');
->>>>>>> origin/master
             }
             else  if ($dato['Perf_Usuario_idPerf_Usuario']== 1){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-<<<<<<< HEAD
+
                 header('location: http://localhost/Activos/Codigo/Administrador/Administrador.html');
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
                 header('location: location: http://localhost/Activos/Codigo/Gestor/Gestor.html');
-=======
+
                 header('location: /Administrador/Administrador.html');
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
                 header('location: /Administrador/Gestor.html');
->>>>>>> origin/master
+
             }
             else  if ($dato['Perf_Usuario_idPerf_Usuario']== 4){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-<<<<<<< HEAD
                 header('location: location: http://localhost/Activos/Codigo/Auditor/Auditor.html');
-=======
                 header('location: /Administrador/Auditor.html');
->>>>>>> origin/master
             }
             else{
                 echo 'ERROR!!!!';
