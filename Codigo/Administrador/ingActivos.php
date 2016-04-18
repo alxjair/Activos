@@ -36,47 +36,32 @@
                 
             <label class="col-sm">Clasificacion del Activo</label> 
                 <select class="form-control" name="Clasificacion" >
-                    
                      <?php
                         require ('../class.Conexion.php');
                         $db = new Conexion();
-                       
-                        
+                        $sql= $db -> query ("SELECT * FROM tipo_activo ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tActivo=$row["Nom_Tipo_Activo"];
+                            echo "<option>$tActivo</option>";
+                        }
                     ?>         
-                             
-                    
-                    
-                         
-                    <!--<option >APLICACION</option>
-                    <option >SOFTWARE UTILITARIO</option>
-                    <option >MODULO SISTEMA CORE</option>
-                    <option >MANUALES Y DOCUMENTACION DE PROCESOS</option>
-                    <option >HERRAMIENTAS DE SOFTWARE DE USUARIO FINAL (HSUF)</option>
-                    <option >EQUIPOS DE COMPUTO</option>
-                    <option >EQUIPOS DE COMPUTO DE USUARIO FINAL (ECUF)</option>
-                    <option >INFORMACION ELECTRONICA</option>
-                    <option >INFORMACION FISICA</option>
-                    <option >EQUIPOS DE OFICINA</option>
-                    <option >SERVICIOS (INCLUYE SERV. PUBLICOS Y SERV. CONTRATADOS)</option>
-                    <option >OTROS ACTIVOS DE INFORMACION</option> -->
-                       
-                    
-                    
                 </select>
                 <br />
-                
+            <br>  
             <label class="col-sm">Area</label>
                 <select class="form-control" name="Area" >
                     <option >DIRECCION DE RIESGOS</option>
                 </select>
-             <br>
+            <br />
+            <br>
                           
              <label class="col-sm">Contenedor de Activos</label>
                 <select class="form-control" name="ContActivos" >
                     <option >SI</option>
                     <option >NO</option>
                 </select>
-                <br>
+            <br />
+            <br>
                 
              <label class="col-sm">Valor Confidencialidad</label>
                 <select class="form-control" name="ValConfidencialidad" >
