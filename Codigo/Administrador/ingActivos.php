@@ -44,12 +44,13 @@
                             $tActivo=$row["Nom_Tipo_Activo"];
                             echo "<option>$tActivo</option>";
                         }
-                    ?>         
+                    ?>
                 </select>
                 <br />
             <br>  
             <label class="col-sm">Area</label>
                 <select class="form-control" name="Area" >
+                   
                     <option >DIRECCION DE RIESGOS</option>
                 </select>
             <br />
@@ -148,7 +149,7 @@
                 <button type="submit" class="btn btn-default" onclick="goBack()" >Cancelar</button>
         </form> 
     </div> 
-    
+    </form>
   <script>
       function goBack() {
            window.history.back();
