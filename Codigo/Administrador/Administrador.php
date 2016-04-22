@@ -46,7 +46,7 @@
                         </li>
                         
                         <li>
-                            <a href="../Comunes/ingActivos.php">
+                            <a href="../Comunes/IngActivos.php">
                                 <span class="ca-icon">A</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Registrar Activos</h2>

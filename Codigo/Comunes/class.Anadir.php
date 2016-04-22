@@ -80,19 +80,18 @@ class Anadir {
             
              
            $db -> query("INSERT INTO activo(Id_Activo, Nom_Activo, Desc_Activo, Propietario_Activo, Entrada_Salida, Remitente, Ubicacion_Activo, Custodio_Activo, Soporte_Tec_Activo, Soporte_Func_Activo, Med_Almacenamiento_Id_Med_Almacenamiento, Tipo_Activo_Id_Tipo_Activo, Clasificacion_Activo_Id_Clasificacion_Activo, Disponibilidad_Id_Disponibilidad, Integridad_idIntegridad, Confidencialidad_idConfidencialidad) VALUES ('$this->idActivo', '$this->nomActivo', '$this->descActivo', '$this->proActivo', '$this->valEntrada', '$this->valRemitente', '$this->ubiActivo', '$this->cusActivo', ' $this->sopActivo', '$this->sopFunActivo', '$medatemp', '$temptAct', '$tempclasAC', '$tempDispV', '$tempIntV', '$tempConfV')");
-           
+         	header("Location: IngActivos.php");  
         }
         else{ 
             
                 
                 echo '<script language="javascript">';
-                echo 'alert("message successfully sent")';
+                echo 'alert("El activo no fue cargado")';
                 echo '</script>';
                 exit;
+				header("Location: IngActivos.php");
                 
         }
-        //header("Location: AnadirUsuarios.html");
-        
     } 
  
 }
