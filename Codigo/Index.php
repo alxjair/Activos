@@ -18,7 +18,7 @@
             
             <input class="btn btn-info center-block form-control" type="submit" name="login" value="Login"/>
             <br>
-            <input class="btn btn-info center-block form-control" onclick="location.href='OlvidoContraseña.html'" type="button" name= "recuperar" value="Recordar" />
+            <input class="btn btn-info center-block form-control" onclick="location.href='OlvidoContraseña.php'" type="button" name= "recuperar" value="Recordar" />
         </form>
        </div>
     </body>

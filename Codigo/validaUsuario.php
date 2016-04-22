@@ -16,15 +16,15 @@ switch ($modo){
             }
             else{
                
-                header ('location: Index.html');
+                header ('location: Index.php');
             }
         }
         else{
-            header('location : Index.html');
+            header('location : Index.php');
         }
     break;
     case 'Recordar' :
-        header('Location : OlvidoContraseña.html');
+        header('Location : OlvidoContraseña.php');
         if(isset($_POST['email'])){
             alert("Hello! I am an alert box!!");
         }

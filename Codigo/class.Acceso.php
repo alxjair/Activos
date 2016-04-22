@@ -20,38 +20,38 @@ class Acceso {
             if ($dato['Perf_Usuario_idPerf_Usuario']== 3){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-                header('location: location: http://localhost/Activos/Codigo/Gerente/IngresarActivos.html');
-                header('location: /Administrador/IngresarActivos.html');
+                header('location: location: http://localhost/Activos/Codigo/Gerente/IngresarActivos.php');
+                header('location: /Administrador/IngresarActivos.php');
             }
             else  if ($dato['Perf_Usuario_idPerf_Usuario']== 1){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
 
-                header('location: http://localhost/Activos/Codigo/Administrador/Administrador.html');
+                header('location: http://localhost/Activos/Codigo/Administrador/Administrador.php');
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-                header('location: location: http://localhost/Activos/Codigo/Gestor/Gestor.html');
+                header('location: location: http://localhost/Activos/Codigo/Gestor/Gestor.php');
 
-                header('location: /Administrador/Administrador.html');
+                header('location: /Administrador/Administrador.php');
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-                header('location: /Administrador/Gestor.html');
+                header('location: /Administrador/Gestor.php');
 
             }
             else  if ($dato['Perf_Usuario_idPerf_Usuario']== 4){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-                header('location: location: http://localhost/Activos/Codigo/Auditor/Auditor.html');
-                header('location: /Administrador/Auditor.html');
+                header('location: location: http://localhost/Activos/Codigo/Auditor/Auditor.php');
+                header('location: /Administrador/Auditor.php');
             }
             else{
                 echo 'ERROR!!!!';
             }
         }
         else{
-            header ('location: Index.html');
+            header ('location: Index.php');
             
         }
             

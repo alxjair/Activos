@@ -20,7 +20,7 @@ switch ($modo){
         }
     break;
     case 'Cancelar' :
-        header('Location : Administrador/Administrador.html');
+        header('Location : Administrador/Administrador.php');
     break;
     default:
        # $template =new Prinick();

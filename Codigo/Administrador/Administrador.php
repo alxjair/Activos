@@ -16,7 +16,7 @@
        <div class="container-fluid well">
            <img src="../../Imagenes/logoMUNDIAL.png" alt="right">
            
-                <button class="btn btn-default navbar-right" type="form-control" onclick= "location.href='index.html'">Cerrar Sesion</button>
+                <button class="btn btn-default navbar-right" type="form-control" onclick= "location.href='index.php'">Cerrar Sesion</button>
                 
        </div>
                 
@@ -26,7 +26,7 @@
    <div class="content container">
        <ul class="ca-menu">
                         <li>
-                            <a href="AnadirUsuarios.html">
+                            <a href="AnadirUsuarios.php">
                                 <span class="ca-icon">U</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Añadir Usuarios</h2>
@@ -36,7 +36,7 @@
                         </li>
                         
                         <li>
-                            <a href="listarUsuarios.html">
+                            <a href="listarUsuarios.php">
                                 <span class="ca-icon">p</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Listar Usuarios </h2>
@@ -56,7 +56,7 @@
                         </li>
                         
                         <li>
-                            <a href="EditarActivos.html">
+                            <a href="EditarActivos.php">
                                 <span class="ca-icon">S</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Modificar Activos</h2>
@@ -75,7 +75,7 @@
                         </li>
                         
                         <li>
-                            <a href="GenerarReporte.html">
+                            <a href="GenerarReporte.php">
                                 <span class="ca-icon">a</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Generar Reportes</h2>

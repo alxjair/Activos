@@ -56,7 +56,7 @@ class Anadir {
                 exit;
                 
         }
-        header("Location: AnadirUsuarios.html");
+        header("Location: AnadirUsuarios.php");
         
     }   
 }
