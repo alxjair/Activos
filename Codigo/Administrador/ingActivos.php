@@ -46,14 +46,12 @@
                         }
                     ?>
                 </select>
-                <br />
             <br>  
             <label class="col-sm">Area</label>
                 <select class="form-control" name="Area" >
                    
                     <option >DIRECCION DE RIESGOS</option>
                 </select>
-            <br />
             <br>
                           
              <label class="col-sm">Contenedor de Activos</label>
@@ -61,7 +59,6 @@
                     <option >SI</option>
                     <option >NO</option>
                 </select>
-            <br />
             <br>
                 
              <label class="col-sm">Valor Confidencialidad</label>
@@ -103,9 +100,9 @@
                 <input type="text" class="form-control" id="formGroup" name="Soporte">
                 <!--<br> 
                 <label>Dependencia de Otros Activos</label>
-                <input type="text" class="form-control" id="formGroup" >
-                <br>--> 
-                               
+                <input type="text" class="form-control" id="formGroup" >-->
+                
+                <br>              
              <label class="col-sm">Tipo de activo</label>
                  <select class="form-control" name="TipoActivo" >
                     <option value="">FISICO</option>
