@@ -75,15 +75,6 @@
                     <option >CRITICA</option>
                 </select>
              <br>
-             
-             <label class="col-sm">Valor Entrada/Salida</label>
-                <select class="form-control" name="EntradaActivo" >
-                    <option >ENTRADA</option>
-                    <option >SALIDA</option>
-                    <option >ENTRADA/SALIDA</option>
-                    <option >NO APLICA</option>
-                </select>
-             <br>
             </div>
             
             <div class="col-sm-6">
@@ -137,6 +128,14 @@
                     <option >INDISPENSABLE</option>
                     <option >NECESARIA</option>
                     <option >NORMAL</option>
+                </select>
+             <br>
+             <label class="col-sm">Valor Entrada/Salida</label>
+                <select class="form-control" name="EntradaActivo" >
+                    <option >ENTRADA</option>
+                    <option >SALIDA</option>
+                    <option >ENTRADA/SALIDA</option>
+                    <option >NO APLICA</option>
                 </select>
              <br>
             </div>
