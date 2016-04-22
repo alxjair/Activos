@@ -5,9 +5,8 @@ require ('../class.Conexion.php');
 $modo=isset($_GET['modo']) ? $_GET['modo'] : 'default';
 
 switch ($modo){
-    case 'insert':  
+    case 'insertUser':  
         if (isset($_POST['insertar'])){
-            
                  
           include ('../class.Anadir.php');
           $add = new Anadir($_POST['usernick'], $_POST['userpass'], $_POST['estado'], $_POST['username'], $_POST['perfil'], $_POST['userid'],      $_POST['usermail']);

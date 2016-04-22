@@ -8,7 +8,7 @@
 </head>
 
 <body>
-  <form action="anadirUsuario.php?modo=insert" method="post"> 
+  <form action="anadirUsuario.php?modo=insertUser" method="post"> 
    <div class="container-fluid well ">
        <img src="../../Imagenes/logoMUNDIAL.png" class="image-responsive">
    </div>

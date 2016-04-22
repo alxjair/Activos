@@ -9,7 +9,7 @@
     
     <body id="principal">
        <div id="caja">
-       <img id="mundial" src="../Imagenes/logoMUNDIAL.png"/>
+       <img id="mundial" src="../Imagenes/logoMUNDIAL.png"/>    
         <form action="validaUsuario.php?modo=login" method="post" class="login">
             <input class="form-control" type="text" name="username" placeholder="Usuario"/>
             

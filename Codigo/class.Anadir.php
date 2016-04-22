@@ -40,6 +40,8 @@ class Anadir {
         $sql= $db -> query ("SELECT nick_Usuario, correo_Usuario FROM usuario WHERE nick_Usuario = '$this->user' OR pass_Usuario = '$this->pass';");
         $existe = $db -> recorrer($sql);
         
+        
+        
      
         if($existe['nick_Usuario'] != $this->user and $existe['correo_Usuario'] != $this->mailUsuario){
             
