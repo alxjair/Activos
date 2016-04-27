@@ -16,7 +16,7 @@
        <div class="container-fluid well">
            <img src="../../Imagenes/logoMUNDIAL.png" alt="right">
            
-                <button class="btn btn-default navbar-right" type="form-control" onclick= "location.href='index.php'">Cerrar Sesion</button>
+                <button class="btn btn-default navbar-right" type="form-control" onclick= "location.href = '../logout.php'">Cerrar Sesion</button>
                 
        </div>
                 
@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+							 <a href="../Comunes/verActivos.php">
                                 <span class="ca-icon">o</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Ver Activos </h2>

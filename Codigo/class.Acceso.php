@@ -9,7 +9,7 @@ class Acceso {
         $this->user = $usuario;
         $this->pass = $password;
     }
-    
+    //Matriz asociativa para redirecciones
     public function login(){
         
         $db = new Conexion();
@@ -20,31 +20,25 @@ class Acceso {
             if ($dato['Perf_Usuario_idPerf_Usuario']== 3){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-                header('location: location: http://localhost/Activos/Codigo/Gerente/IngresarActivos.php');
-                header('location: /Administrador/IngresarActivos.php');
+                header('location: http://localhost/Activos/Codigo/Comunes/ingActivos.php');
             }
             else  if ($dato['Perf_Usuario_idPerf_Usuario']== 1){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-
                 header('location: http://localhost/Activos/Codigo/Administrador/Administrador.php');
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
                 header('location: location: http://localhost/Activos/Codigo/Gestor/Gestor.php');
-
-                header('location: /Administrador/Administrador.php');
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
                 header('location: /Administrador/Gestor.php');
-
             }
             else  if ($dato['Perf_Usuario_idPerf_Usuario']== 4){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
                 header('location: location: http://localhost/Activos/Codigo/Auditor/Auditor.php');
-                header('location: /Administrador/Auditor.php');
             }
             else{
                 echo 'ERROR!!!!';

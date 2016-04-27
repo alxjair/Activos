@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
     <head>
        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login</title>
@@ -18,7 +18,7 @@
             
             <input class="btn btn-info center-block form-control" type="submit" name="login" value="Login"/>
             <br>
-            <input class="btn btn-info center-block form-control" onclick="location.href='OlvidoContraseña.php'" type="button" name= "recuperar" value="Recordar" />
+            <input class="btn btn-info center-block form-control" onclick="location.href='OlvidoContrasena.php'" type="button" name= "recuperar" value="Recordar" />
         </form>
        </div>
     </body>

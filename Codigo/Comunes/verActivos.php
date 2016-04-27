@@ -21,28 +21,24 @@
         <table class="table table-striped table-bordered" border="1">
             <thead>
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Usuario</th>
-                    <th>Estado</th>
+                    <th>Nombre del Activo</th>
+                    <th>Descripcion del activo</th>
+                    <th>Propietario del activo</th>
                 </tr>
                 <?php
-                        $sql= $db -> query ("SELECT * FROM usuario ;");
+                        $sql= $db -> query ("SELECT * FROM activo ;");
                         while($row = $db -> recorrer($sql)) {
                             
-							$ID = $row['idUsuario'];
-							$NAME =$row ['nombreUsuario'];
-							$NICK = $row ['nick_Usuario'];
-							$STATE =$row ['estado'];		
+							$NAMEACT = $row['Nom_Activo'];
+							$DESCACTIVO =$row ['Desc_Activo'];
+							$PROPIETARIO = $row ['Propietario_Activo'];
     						echo "<tr>";
-								echo "<th>$ID</th>";
-								echo "<th>$NAME</th>";
-								echo "<th>$NICK</th>";
-								echo "<th>$STATE</th>";
+								echo "<th>$NAMEACT</th>";
+								echo "<th>$DESCACTIVO</th>";
+								echo "<th>$PROPIETARIO</th>";
 							echo "</tr>";
                         }
                  ?>
-         
             </thead>
             <tbody>
             </tbody>
