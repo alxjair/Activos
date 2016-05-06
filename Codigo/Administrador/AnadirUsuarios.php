@@ -22,7 +22,7 @@
             <label for="nombre">Nombre</label>
             <div class="row">
                 <div class="col-xs-8">
-                     <input class="form-control" required="" type="text" name="username">
+                     <input class="form-control" required="" type="text" name="username" pattern="[A-Za-z ]+">
                      
                 </div>
              </div>
@@ -31,7 +31,7 @@
              <label for="usuario">Usuario</label>
              <div class="row">    
                  <div class="col-xs-4">
-                     <input class="form-control" required="" type="text" name="usernick">
+                     <input class="form-control" required="" type="text" name="usernick" pattern="[a-zA-Z0-9]+" title="NO debe contener signos">
                  </div>
              </div>
              <br/>
@@ -39,7 +39,7 @@
              <label for="idusuario">Cedula</label>
              <div class="row">    
                  <div class="col-xs-4">
-                     <input class="form-control" required="" type="text" id="text" name="userid">
+                     <input class="form-control" required="" type="text" id="text" name="userid" pattern="[0-9]+" title="Debe ser Numerico">
                  </div>
              </div>
              <br/>
