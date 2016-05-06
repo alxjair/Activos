@@ -1,6 +1,6 @@
 <?php
-	require ('../class.Conexion.php');
-	$db = new Conexion();
+	require_once("busquedasDB.php");
+	require_once ('../class.Conexion.php');
 ?>
 
 
@@ -27,12 +27,13 @@
                 <select class="form-control" name="NombreArea" id="inArea">
                     <option value="">-Selecciona un Area-</option>
                      <?php
-                        $sql= $db -> query ("SELECT nom_Area FROM Area ;");
-                        while($row = $db -> recorrer($sql)) {
-                        $cActivo=$row["nom_Area"];
-                          echo "<option>$cActivo</option>";
+						$areas= buscarArea();
+						$db = new conexion();
+						while($row = $db-> recorrer($areas)){
+                            $tArea=$row["nom_Area"];
+                            echo "<option>$tArea</option>";
                         }
-                         ?>	
+                     ?>	
                 </select>
                 <br />
             <br>  
@@ -49,8 +50,6 @@
                 </select>
             <br />
             <br>
-                
-            
         </div>      
                 <input type= "hidden" name="insetAct" value="1"/>
                 <button type="submit" class="btn btn-success" onclick="alert('Se Ha Agregado el Activo!')">Guardar</button>
@@ -72,11 +71,12 @@
 		$("#inArea").on("change", buscarArea);
 	});
 	
+	
 	function buscarArea()
 	{
 	//alert("cambio");
 		
-	$("#inActivo").html("<option value=''>- primero seleccione un activo -</option>");
+	//$("#inActivo").html("<option value=''>- primero seleccione un activo -</option>");
  
     $area = $("#inArea").val();
  
@@ -87,14 +87,14 @@
         $.ajax({
             dataType: "json",
             data: {"area": $area},
-            url:   'buscar.php',
+            url:   'buscarActivo.php',
             type:  'post',
             beforeSend: function(){
                 //Lo que se hace antes de enviar el formulario
                 },
             success: function(respuesta){
                 //lo que se si el destino devuelve algo
-                $("#municipio").html(respuesta.html);
+                $("#inActivo").html(respuesta.html);
             },
             error:    function(xhr,err){ 
                 alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
