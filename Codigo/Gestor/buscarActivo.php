@@ -1,31 +1,17 @@
 <?php
-require_once("busquedasDB.php");
 
-if(isset($_POST['area'])){
-	
-	$activos = buscarActivos($_POST['area']);
-	
-	$html = "<option value=''>- Seleccione un Activo -</option>";
-	
-	foreach($activos as $registro){
-		$html .= "<option value=$registro[Nom_Activo]</option>";
-	}
-	
-	$respuesta = array("html"=>$html);
-	echo json_encode($respuesta);
+require_once ('../class.Conexion.php');
+
+$conexion = new Conexion();
+
+$dArea= $_POST['nomArea'];	
+
+$consulta= $conexion -> query ("SELECT * FROM activo WHERE Area_idArea = (SELECT idArea FROM area WHERE nom_Area = '$dArea');");
+
+echo "<option>Seleccione un Activo</option>";
+while  ($row = $conexion->recorrer($consulta)){	
+	$linea = $row["Nom_Activo"];
+	echo "<option>$linea</option>";
 }
-/*
-if(isset($_POST['municipio'])){
-	
-	$localidades= dameLocalidad($_POST['municipio']);
-	
-	$html = "<option value=''>- Seleccione una Localidad -</option>";
-	foreach($localidades as $indice => $registro){
-		$html .= "<option value='".$registro['idlocalidades']."'>".$registro['localidad']."</option>";
-	}
-	
-	$respuesta = array("html"=>$html);
-	echo json_encode($respuesta);
-}*/
 
 ?>

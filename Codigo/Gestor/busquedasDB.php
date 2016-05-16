@@ -10,32 +10,31 @@ function buscarArea(){
 	return $sql;
 }
 
-function buscarActivos($area = ''){
-	$resultado = false;
+function buscarActivos($area){
+	$db = new Conexion();
 	$consulta = "SELECT * FROM activo";
 	if($area != ''){
-		$consulta .= " WHERE Area_idArea = (SELECT idArea FROM area WHERE nom_Area = :nArea)";
+		$consulta .= " WHERE Area_idArea = (SELECT idArea FROM area WHERE nom_Area ='$area')";
 	}
-	var_dump ($consulta);
-	$db = new Conexion();
+	$resultado = $db->query($consulta);
+	$row = $db->recorrer($resultado);
+	/*
 	$sentencia = $db->prepare($consulta);
-	var_dump($sentencia);
-	$sentencia->bind_param('nArea',$area);
+	$sentencia->bind_param('s',$area);
 	
 	try {
 		if(!$sentencia->execute()){
 			print_r($sentencia->errorInfo());
 		}
-		$resultado = $sentencia->fetchAll();
-		//$resultado = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-		$sentencia->closeCursor();
+		$resultado = $sentencia->fetch_all();
+		$sentencia->close();
 	}
 	catch(PDOException $e){
 		echo "Error al ejecutar la sentencia: \n";
 			print_r($e->getMessage());
 	}
-	
-	return $resultado;
+	var_dump($resultado);*/
+	return $row;
 	
 }
 
