@@ -3,13 +3,22 @@
 	class CalcRiesgos{
 		
 		
-		private $ImpactoActivo;
+		/*private $ImpactoActivoConf;
+		private $ImpactoActivoInt;
+		private $ImpactoActivoDisp;*/
 		private $ImpactoAcumuladoActivo;
 		protected $matRIneherente;
 		protected $matImpacto;
+		protected $ValorActivo;
+		protected $ValorDegradacion;
 		
 
-		public function __construct(){
+		//$valAcConf, $valAcInt, $valAcDisp
+		public function __construct($valDeg){
+			/*$this->ImpactoActivoConf = $valAcConf;
+			$this->ImpactoActivoInt = $valAcInt;
+			$this->ImpactoActivoDisp = $valAcDisp;*/
+			$this->ValorDegradacion= $valDeg;
 			
 			$this->matImpacto = array(		array("MODERADO", "MODERADO", "MAYOR", "CATASTROFICO", "CATASTROFICO"),
 										  	array("MENOR", "MODERADO", "MAYOR", "CATASTROFICO", "CATASTROFICO"),
@@ -27,10 +36,8 @@
 		}
 		
 		
-		public function ValImpacto($vRiesgo){
-			
-			echo $vRiesgo;
-			
+		protected function ValImpacto($vRiesgo){
+						
 			$vImpacto =0;
 			if ($vRiesgo = "CATASTROFICO"){
 				$vImpacto = 100;
@@ -43,14 +50,14 @@
 			}elseif($vRiesgo = "INSIGNIFICANTE"){
 				$vImpacto = 20;
 			}
-			echo $vImpacto;
 			return $vImpacto;	
 		}
 		
-		public function CalcImpactActivo($valActivo,$degradacion){
 		
-			$posValActivo;
-			$posValDegrada;
+		
+		protected function Posvalactivo($valActivo) {
+			
+			$posValActivo=0;
 			
 			if($valActivo == "MUY ALTO"){
 				$posValActivo=0;
@@ -62,29 +69,42 @@
 				$posValActivo=3;	
 			}else if($valActivo == "MUY BAJO"){
 				$posValActivo=4;	
-			}	
+			}
 			
-			if($valActivo == "0% - 24%"){
-				$posValActivo=0;
-			}else if($valActivo == "25% - 49%"){
-				$posValActivo=1;
-			}else if($valActivo == "50% - 74%"){
-				$posValActivo=2;
-			}else if($valActivo == "75% - 89%"){
-				$posValActivo=3;
-			}else if($valActivo == "90% -100%"){
-				$posValActivo=4;
-			};
+			return $posValActivo;
 			
+		}
+		
+		protected function PosDegractivo($valDeg) {
+			
+			$posValDegActivo=0;
+			
+			if($valDeg == "0% - 24%"){
+				$posValDegActivo=0;
+			}else if($valDeg == "25% - 49%"){
+				$posValDegActivo=1;
+			}else if($valDeg == "50% - 74%"){
+				$posValDegActivo=2;
+			}else if($valDeg == "75% - 89%"){
+				$posValDegActivo=3;
+			}else if($valDeg == "90% -100%"){
+				$posValDegActivo=4;
+			}
+			return $posValDegActivo;
+			
+		}
+		
+		
+		public function CalcImpactActivo($ValorActivo){
+			
+			$posValActivo = $this->Posvalactivo($ValorActivo);
+			$posValDegrada = $this->PosDegractivo($this->ValorDegradacion);
 			return $this->matImpacto[$posValActivo][$posValDegrada];
-			
-				
-			
 		}
 		
 		public function CalcImpactTotalActivo($Iconf,$Iinte,$Idisp){
 			
-			$sImpacto = ValImpacto($Iconf) + ValImpacto($Iinte) + ValImpacto($Idisp);
+			$sImpacto = $this-> ValImpacto($Iconf) + $this->ValImpacto($Iinte) + $this->ValImpacto($Idisp);
 			$resTemp ="";
 			if ($sImpacto > 280){
 				$resTemp = "CATASTROFICO";
@@ -97,10 +117,8 @@
 			}else if ($sImpacto <= 100){
 				$resTemp = "INSIGNIFICANTE";
 			}
-			$this->ImpactoActivo=$resTemp;
+			return $resTemp;
 		}
-		
-		
 		
 	}
 

@@ -17,17 +17,24 @@
            <img src="../../Imagenes/logoMUNDIAL.png" alt="right">
            
                 <button class="btn btn-default navbar-right" type="form-control" onclick= "location.href = '../logout.php'">Cerrar Sesion</button>
-                
-       </div>
-                
+       </div>              
 
     </header>
     
    <div class="content container">
        <ul class="ca-menu">
-                        
+                       
+                        <li>
+                            <a href="../Gestor/ingresarAmenaza.php">
+                                <span class="ca-icon">x</span>
+                                <div class="ca-content">
+                                    <h2 class="ca-main">Ingresar Amenaza</h2>
+                                    <h3 class="ca-sub">Calcula amenaza de un activo</h3>
+                                </div>
+                            </a>
+                        </li>    
                        <li>
-                            <a href="../Comunes/IngActivos.php">
+                            <a href="../Gestor/EstimarRiesgos.php">
                                 <span class="ca-icon">u</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Calculos de Riesgo</h2>
@@ -47,7 +54,7 @@
                         </li>
                         
                         <li>
-                            <a href="EditarActivos.php">
+                            <a href="../Administrador/EditarActivos.php">
                                 <span class="ca-icon">S</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Modificar Activos</h2>

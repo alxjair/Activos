@@ -8,8 +8,7 @@ $dArea= $_POST['nomArea'];
 
 $consulta= $conexion -> query ("SELECT * FROM activo WHERE Area_idArea = (SELECT idArea FROM area WHERE nom_Area = '$dArea');");
 
-var_dump($consulta);
-
+echo "<option>Seleccione un Activo</option>";
 while  ($row = $conexion->recorrer($consulta)){	
 	$linea = $row["Nom_Activo"];
 	echo "<option>$linea</option>";
