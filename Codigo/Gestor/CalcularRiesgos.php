@@ -24,7 +24,7 @@ $ImpacTotal = $riesgoActivo -> CalcImpactTotalActivo($riesgConf, $riesInt, $ries
 
 
 
-$datos = array ("impactoConf"=>$valCon,"impactoInt"=>$riesInt,"impactoDisp"=>$riesDisp,"impacTotal" =>$ImpacTotal);
+$datos = array ("impactoConf"=>$riesgConf,"impactoInt"=>$riesInt,"impactoDisp"=>$riesDisp,"impacTotal" =>$ImpacTotal);
 echo json_encode($datos);
 exit();
 

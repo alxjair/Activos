@@ -215,6 +215,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `DB_Activos`.`Area`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `DB_Activos`.`Area` (
+  `idArea` INT NOT NULL COMMENT '',
+  `nom_Area` VARCHAR(45) NOT NULL COMMENT '',
+  PRIMARY KEY (`idArea`)  COMMENT '',
+  UNIQUE INDEX `idArea_UNIQUE` (`idArea` ASC)  COMMENT '')
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `DB_Activos`.`Activo`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `DB_Activos`.`Activo` (
@@ -237,6 +248,7 @@ CREATE TABLE IF NOT EXISTS `DB_Activos`.`Activo` (
   `Degradacion` VARCHAR(45) NULL COMMENT '',
   `Riesgo_inherente` VARCHAR(45) NULL COMMENT '',
   `Riesgo_residual` VARCHAR(45) NULL COMMENT '',
+  `Area_idArea` INT NOT NULL COMMENT '',
   PRIMARY KEY (`Id_Activo`, `Med_Almacenamiento_Id_Med_Almacenamiento`, `Tipo_Activo_Id_Tipo_Activo`, `Clasificacion_Activo_Id_Clasificacion_Activo`, `Disponibilidad_Id_Disponibilidad`, `Integridad_idIntegridad`, `Confidencialidad_idConfidencialidad`)  COMMENT '',
   UNIQUE INDEX `idActivo_UNIQUE` (`Id_Activo` ASC)  COMMENT '',
   INDEX `fk_Activo_Med_Almacenamiento1_idx` (`Med_Almacenamiento_Id_Med_Almacenamiento` ASC)  COMMENT '',
@@ -245,6 +257,7 @@ CREATE TABLE IF NOT EXISTS `DB_Activos`.`Activo` (
   INDEX `fk_Activo_Disponibilidad1_idx` (`Disponibilidad_Id_Disponibilidad` ASC)  COMMENT '',
   INDEX `fk_Activo_Integridad1_idx` (`Integridad_idIntegridad` ASC)  COMMENT '',
   INDEX `fk_Activo_Confidencialidad1_idx` (`Confidencialidad_idConfidencialidad` ASC)  COMMENT '',
+  INDEX `fk_Activo_Area1_idx` (`Area_idArea` ASC)  COMMENT '',
   CONSTRAINT `fk_Activo_Med_Almacenamiento1`
     FOREIGN KEY (`Med_Almacenamiento_Id_Med_Almacenamiento`)
     REFERENCES `DB_Activos`.`Med_Almacenamiento` (`Id_Med_Almacenamiento`)
@@ -274,6 +287,11 @@ CREATE TABLE IF NOT EXISTS `DB_Activos`.`Activo` (
     FOREIGN KEY (`Confidencialidad_idConfidencialidad`)
     REFERENCES `DB_Activos`.`Confidencialidad` (`idConfidencialidad`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Activo_Area1`
+    FOREIGN KEY (`Area_idArea`)
+    REFERENCES `DB_Activos`.`Area` (`idArea`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
@@ -283,40 +301,21 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `DB_Activos`.`Activo_has_Amenazas` (
   `Activo_Id_Activo` INT NOT NULL COMMENT '',
-  `Activo_Med_Almacenamiento_Id_Med_Almacenamiento` INT NOT NULL COMMENT '',
-  `Activo_Tipo_Activo_Id_Tipo_Activo` INT NOT NULL COMMENT '',
-  `Activo_Clasificacion_Activo_Id_Clasificacion_Activo` INT NOT NULL COMMENT '',
-  `Activo_Disponibilidad_Id_Disponibilidad` INT NOT NULL COMMENT '',
-  `Activo_Integridad_idIntegridad` INT NOT NULL COMMENT '',
-  `Activo_Confidencialidad_idConfidencialidad` INT NOT NULL COMMENT '',
-  `Activo_Subproceso_Id_Subproceso` INT NOT NULL COMMENT '',
-  `Activo_Subproceso_Proceso_Id_Proceso` INT NOT NULL COMMENT '',
   `Amenazas_Id_Amenazas` INT NOT NULL COMMENT '',
-  `Amenazas_Tipo_Amenazas_Id_Tipo_Amenazas` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`Activo_Id_Activo`, `Activo_Med_Almacenamiento_Id_Med_Almacenamiento`, `Activo_Tipo_Activo_Id_Tipo_Activo`, `Activo_Clasificacion_Activo_Id_Clasificacion_Activo`, `Activo_Disponibilidad_Id_Disponibilidad`, `Activo_Integridad_idIntegridad`, `Activo_Confidencialidad_idConfidencialidad`, `Activo_Subproceso_Id_Subproceso`, `Activo_Subproceso_Proceso_Id_Proceso`, `Amenazas_Id_Amenazas`, `Amenazas_Tipo_Amenazas_Id_Tipo_Amenazas`)  COMMENT '',
-  INDEX `fk_Activo_has_Amenazas_Amenazas1_idx` (`Amenazas_Id_Amenazas` ASC, `Amenazas_Tipo_Amenazas_Id_Tipo_Amenazas` ASC)  COMMENT '',
-  INDEX `fk_Activo_has_Amenazas_Activo1_idx` (`Activo_Id_Activo` ASC, `Activo_Med_Almacenamiento_Id_Med_Almacenamiento` ASC, `Activo_Tipo_Activo_Id_Tipo_Activo` ASC, `Activo_Clasificacion_Activo_Id_Clasificacion_Activo` ASC, `Activo_Disponibilidad_Id_Disponibilidad` ASC, `Activo_Integridad_idIntegridad` ASC, `Activo_Confidencialidad_idConfidencialidad` ASC, `Activo_Subproceso_Id_Subproceso` ASC, `Activo_Subproceso_Proceso_Id_Proceso` ASC)  COMMENT '',
+  `Probabilidad_Ocurrencia` VARCHAR(45) NULL COMMENT '',
+  PRIMARY KEY (`Activo_Id_Activo`, `Amenazas_Id_Amenazas`)  COMMENT '',
+  INDEX `fk_Activo_has_Amenazas_Amenazas1_idx` (`Amenazas_Id_Amenazas` ASC)  COMMENT '',
+  INDEX `fk_Activo_has_Amenazas_Activo1_idx` (`Activo_Id_Activo` ASC)  COMMENT '',
   CONSTRAINT `fk_Activo_has_Amenazas_Activo1`
-    FOREIGN KEY (`Activo_Id_Activo` , `Activo_Med_Almacenamiento_Id_Med_Almacenamiento` , `Activo_Tipo_Activo_Id_Tipo_Activo` , `Activo_Clasificacion_Activo_Id_Clasificacion_Activo` , `Activo_Disponibilidad_Id_Disponibilidad` , `Activo_Integridad_idIntegridad` , `Activo_Confidencialidad_idConfidencialidad`)
-    REFERENCES `DB_Activos`.`Activo` (`Id_Activo` , `Med_Almacenamiento_Id_Med_Almacenamiento` , `Tipo_Activo_Id_Tipo_Activo` , `Clasificacion_Activo_Id_Clasificacion_Activo` , `Disponibilidad_Id_Disponibilidad` , `Integridad_idIntegridad` , `Confidencialidad_idConfidencialidad`)
+    FOREIGN KEY (`Activo_Id_Activo`)
+    REFERENCES `DB_Activos`.`Activo` (`Id_Activo`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Activo_has_Amenazas_Amenazas1`
-    FOREIGN KEY (`Amenazas_Id_Amenazas` , `Amenazas_Tipo_Amenazas_Id_Tipo_Amenazas`)
-    REFERENCES `DB_Activos`.`Amenazas` (`Id_Amenazas` , `Tipo_Amenazas_Id_Tipo_Amenazas`)
+    FOREIGN KEY (`Amenazas_Id_Amenazas`)
+    REFERENCES `DB_Activos`.`Amenazas` (`Id_Amenazas`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `DB_Activos`.`Area`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB_Activos`.`Area` (
-  `idArea` INT NOT NULL COMMENT '',
-  `nom_Area` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`idArea`)  COMMENT '',
-  UNIQUE INDEX `idArea_UNIQUE` (`idArea` ASC)  COMMENT '')
 ENGINE = InnoDB;
 
 
@@ -336,37 +335,6 @@ CREATE TABLE IF NOT EXISTS `DB_Activos`.`Subproceso_has_Area` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Subproceso_has_Area_Area1`
-    FOREIGN KEY (`Area_idArea`)
-    REFERENCES `DB_Activos`.`Area` (`idArea`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `DB_Activos`.`Activo_has_Area`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DB_Activos`.`Activo_has_Area` (
-  `Activo_Id_Activo` INT NOT NULL COMMENT '',
-  `Activo_Med_Almacenamiento_Id_Med_Almacenamiento` INT NOT NULL COMMENT '',
-  `Activo_Tipo_Activo_Id_Tipo_Activo` INT NOT NULL COMMENT '',
-  `Activo_Clasificacion_Activo_Id_Clasificacion_Activo` INT NOT NULL COMMENT '',
-  `Activo_Disponibilidad_Id_Disponibilidad` INT NOT NULL COMMENT '',
-  `Activo_Integridad_idIntegridad` INT NOT NULL COMMENT '',
-  `Activo_Confidencialidad_idConfidencialidad` INT NOT NULL COMMENT '',
-  `Activo_Subproceso_Id_Subproceso` INT NOT NULL COMMENT '',
-  `Activo_Subproceso_Proceso_Id_Proceso` INT NOT NULL COMMENT '',
-  `Area_idArea` INT NOT NULL COMMENT '',
-  `Area_Departamento_idDepartamento` INT NOT NULL COMMENT '',
-  PRIMARY KEY (`Activo_Id_Activo`, `Activo_Med_Almacenamiento_Id_Med_Almacenamiento`, `Activo_Tipo_Activo_Id_Tipo_Activo`, `Activo_Clasificacion_Activo_Id_Clasificacion_Activo`, `Activo_Disponibilidad_Id_Disponibilidad`, `Activo_Integridad_idIntegridad`, `Activo_Confidencialidad_idConfidencialidad`, `Activo_Subproceso_Id_Subproceso`, `Activo_Subproceso_Proceso_Id_Proceso`, `Area_idArea`, `Area_Departamento_idDepartamento`)  COMMENT '',
-  INDEX `fk_Activo_has_Area_Area1_idx` (`Area_idArea` ASC, `Area_Departamento_idDepartamento` ASC)  COMMENT '',
-  INDEX `fk_Activo_has_Area_Activo1_idx` (`Activo_Id_Activo` ASC, `Activo_Med_Almacenamiento_Id_Med_Almacenamiento` ASC, `Activo_Tipo_Activo_Id_Tipo_Activo` ASC, `Activo_Clasificacion_Activo_Id_Clasificacion_Activo` ASC, `Activo_Disponibilidad_Id_Disponibilidad` ASC, `Activo_Integridad_idIntegridad` ASC, `Activo_Confidencialidad_idConfidencialidad` ASC, `Activo_Subproceso_Id_Subproceso` ASC, `Activo_Subproceso_Proceso_Id_Proceso` ASC)  COMMENT '',
-  CONSTRAINT `fk_Activo_has_Area_Activo1`
-    FOREIGN KEY (`Activo_Id_Activo` , `Activo_Med_Almacenamiento_Id_Med_Almacenamiento` , `Activo_Tipo_Activo_Id_Tipo_Activo` , `Activo_Clasificacion_Activo_Id_Clasificacion_Activo` , `Activo_Disponibilidad_Id_Disponibilidad` , `Activo_Integridad_idIntegridad` , `Activo_Confidencialidad_idConfidencialidad`)
-    REFERENCES `DB_Activos`.`Activo` (`Id_Activo` , `Med_Almacenamiento_Id_Med_Almacenamiento` , `Tipo_Activo_Id_Tipo_Activo` , `Clasificacion_Activo_Id_Clasificacion_Activo` , `Disponibilidad_Id_Disponibilidad` , `Integridad_idIntegridad` , `Confidencialidad_idConfidencialidad`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Activo_has_Area_Area1`
     FOREIGN KEY (`Area_idArea`)
     REFERENCES `DB_Activos`.`Area` (`idArea`)
     ON DELETE NO ACTION
@@ -595,6 +563,17 @@ INSERT INTO `DB_Activos`.`Area` (`idArea`, `nom_Area`) VALUES (1, 'PRESIDENCIA')
 INSERT INTO `DB_Activos`.`Area` (`idArea`, `nom_Area`) VALUES (2, 'AUDITORIA');
 INSERT INTO `DB_Activos`.`Area` (`idArea`, `nom_Area`) VALUES (3, 'DIRECCION DE INVERSIONES');
 INSERT INTO `DB_Activos`.`Area` (`idArea`, `nom_Area`) VALUES (4, 'VICEPRESIDENCIA DE CONTROL FINANCIERO');
+
+COMMIT;
+
+
+-- -----------------------------------------------------
+-- Data for table `DB_Activos`.`Activo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `DB_Activos`;
+INSERT INTO `DB_Activos`.`Activo` (`Id_Activo`, `Nom_Activo`, `Desc_Activo`, `Propietario_Activo`, `Entrada_Salida`, `Remitente`, `Ubicacion_Activo`, `Custodio_Activo`, `Soporte_Tec_Activo`, `Soporte_Func_Activo`, `Med_Almacenamiento_Id_Med_Almacenamiento`, `Tipo_Activo_Id_Tipo_Activo`, `Clasificacion_Activo_Id_Clasificacion_Activo`, `Disponibilidad_Id_Disponibilidad`, `Integridad_idIntegridad`, `Confidencialidad_idConfidencialidad`, `Degradacion`, `Riesgo_inherente`, `Riesgo_residual`, `Area_idArea`) VALUES (1, 'Equipo Presidencia', 'Equipo de computo asignado al presidente', 'Juan Bustamante', 'No aplica', 'No aplica', 'Presidencia', 'Juan Bustamante', 'Gerencia de TI', 'No aplica', 1, 1, 1, 1, 1, 1, '20 - 30%', NULL, NULL, 1);
+INSERT INTO `DB_Activos`.`Activo` (`Id_Activo`, `Nom_Activo`, `Desc_Activo`, `Propietario_Activo`, `Entrada_Salida`, `Remitente`, `Ubicacion_Activo`, `Custodio_Activo`, `Soporte_Tec_Activo`, `Soporte_Func_Activo`, `Med_Almacenamiento_Id_Med_Almacenamiento`, `Tipo_Activo_Id_Tipo_Activo`, `Clasificacion_Activo_Id_Clasificacion_Activo`, `Disponibilidad_Id_Disponibilidad`, `Integridad_idIntegridad`, `Confidencialidad_idConfidencialidad`, `Degradacion`, `Riesgo_inherente`, `Riesgo_residual`, `Area_idArea`) VALUES (2, 'Corvus', 'Software contable de normas NIF', 'Juan Bustamante', 'No aplica', 'No aplica', 'Contabilidad', 'Francisco Silva', 'Corvus SAS', 'Corvus SAS', 1, 2, 3, 1, 1, 1, '30-50%', NULL, NULL, 3);
 
 COMMIT;
 
