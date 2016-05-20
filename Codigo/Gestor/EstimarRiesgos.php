@@ -71,10 +71,17 @@
                <label>Impacto Integridad</label>
                <output type="text" class="form-control" name="ImpactoInt" id="impaInt"/>  
        </div>
+             
+             
               
        <div>
                <label>Impacto Disponibilidad</label>
                <output type="text" class="form-control" name="ImpactoDisp" id="impaDisp"/>  
+       </div>
+            
+            <div>
+               <label>Impacto Total</label>
+               <output type="text" class="form-control" name="ImpactoTotal" id="impaTot"/>  
        </div>
              
        <div>
@@ -86,8 +93,8 @@
        <div>
           <br>
        
-       			<input type = "button" value = "Calcular" onclick="calcular()">
-<!--	           <button type="submit" class="btn btn-success" onclick= "calcular()">Calcular</button>-->
+       		   <input class="btn btn-default"type = "button" value = "Calcular" onclick="calcular()">
+	           <button class="btn btn-success" onclick= "guardar()">Guardar</button>
                <button type="resetall" class="btn btn-info">Limpiar</button>
                <button type="submit" class="btn btn-default" onclick="goBack()" >Cancelar</button>
        </div> 
@@ -288,21 +295,15 @@
 
   <script>
 	function calcular(){
-		
-		
+	
 		var area = $("#inArea").val();
 		var activo = $("#inActivo").val();
 		var valCo = $("#ValConf").val();
 		var valInte = $("#ValInteg").val();
 		var valDis = $("#ValDispo").val();
 		var valDeg = $("#ValDeg").val();
-		
-//		if(area == "" || valCo =="" || valInte = "" || valDis=="" || valDeg ==""){
-//				alert("Los campos deben estar completos");
-//		}
-//		else {
-			//alert("entre");
-			$.ajax({
+			
+		$.ajax({
 
 				data: {area: area, nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, degrada: valDeg},
 				url:   'CalcularRiesgos.php',
@@ -312,23 +313,50 @@
 				beforeSend: function(){
 				},
 				success: function(data){
-					//lo que se si el destino devuelve algo
-					$("#impaConf").val(data.impactoConf);
-					$("#impaInt").val(data.impactoInt);
-					$("#impaDisp").val(data.impactoDisp);
-					$("#riesgIn").val(data.impacTotal);
-					
-					
+					$("#impaConf").html(data.impactoConf);
+					$("#impaInt").html(data.impactoInt);
+					$("#impaDisp").html(data.impactoDisp);
+					$("#impaTot").html(data.impacTotal);
+					$("#riesgIn").html(data.impacTotal); //completar con la otra funcionalidad
 
-
-
-					
 				},
 				error:    function(xhr,err){ 
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
 				}
 			});
-		//}
+	
+		
+	}
+ </script>
+ 
+   <script>
+	function guardar(){
+		
+		var activo = $("#inActivo").val();
+		var valCo = $("#impaConf").val();
+		var valInte = $("#impaInt").val();
+		var valDis = $("#impaDisp").val();
+		var impTotal = $("#impaTot").val();
+		var riesInhe = $("#riesgIn").val();
+		
+		
+		$.ajax({
+
+				data: {nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, iTotal: impTotal, rInhe: riesInhe },
+				url:   'GuardarCalculos.php',
+				type:  'post',
+				
+				beforeSend: function(){
+				},
+				success: function(data){
+					//var resuesta = data.val();
+					//alert(resuesta);
+				},
+				error:    function(xhr,err){ 
+					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+				}
+			});
+	
 		
 	}
  </script>
