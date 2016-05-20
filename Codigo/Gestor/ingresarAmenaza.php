@@ -18,7 +18,7 @@
    </div>
    
     <div class="container well">
-        <center><h1>Ingeso de Amenzas</h1></center>
+        <center><h1>Ingreso de Amenzas</h1></center>
                 
                 <label class="col-sm">Activo</label> 
                 <div>

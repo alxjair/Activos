@@ -10,13 +10,6 @@ function buscarArea(){
 	return $sql;
 }
 
-function buscarActivo(){
-
-	$db = new Conexion();
-	$sql= $db -> query ("SELECT Nom_Activo FROM activo ;");
-	return $sql;
-}
-
 function buscarActivos($area){
 	$db = new Conexion();
 	$consulta = "SELECT * FROM activo";

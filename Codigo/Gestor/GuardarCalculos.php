@@ -1,0 +1,44 @@
+<?php
+require ('../class.Conexion.php');
+
+$conexion = new Conexion();
+
+$nActivo = $_POST['nomactivo'];
+$impactoConf = $_POST['confi'];
+$impactoInt = $_POST["integri"];
+$ImpactoDisp = $_POST['disp'];
+$riesgoInherente = $_POST['rInhe'];
+$impactoTotal= $_POST['iTotal'];
+
+$consulta= $conexion -> query ("SELECT Id_Activo FROM activo WHERE Nom_Activo = '$nActivo';");
+
+$idActivo=0;
+while  ($row = $conexion->recorrer($consulta)){
+	$idActivo = $row["Id_Activo"];
+}
+
+$idImpActivo = $idActivo;
+
+$sql = "INSERT INTO `impacto_por_dimension`(`Impacto_Id_Impacto`, `Impacto_Total`, `Activo_Id_Activo`, `ImpactoConf`, `ImpactoDis`, `ImpactoInte`) VALUES ('$idImpActivo','$impactoTotal','$idActivo','$impactoConf','$ImpactoDisp','$impactoInt')";
+
+
+
+if (mysqli_query($conexion, $sql)){
+    echo "Registros almacenados con Exito";
+} else {
+    echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
+}
+
+
+
+//echo $idImpActivo;
+
+mysqli_close($conexion);
+
+
+
+
+
+
+
+?>
