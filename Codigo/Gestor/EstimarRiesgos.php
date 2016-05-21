@@ -151,9 +151,9 @@
 </script>
     
   <script>
-	$(document).ready(function(){
+	/*$(document).ready(function(){
 		$("#inActivo").on("change", buscarConf);
-	});
+	});*/
 	
 
 	function ValDimenciones(){
@@ -181,14 +181,13 @@
 				}
 			});
 		}
-		
 	}
  </script>
  
  <script>
-	$(document).ready(function(){
+	/*$(document).ready(function(){
 		$("#inActivo").on("change", buscarInt);
-	});
+	});*/
 	
 
 	function ValDimenInt(){
@@ -203,7 +202,6 @@
 				data: {nomActivo: activo},
 				url:   'buscarValint.php',
 				type:  'post',
-
 				beforeSend: function(){
 				},
 				success: function(resultado){
@@ -215,15 +213,14 @@
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
 				}
 			});
-		}
-		
+		}		
 	}
  </script>
  
   <script>
-	$(document).ready(function(){
+	/*$(document).ready(function(){
 		$("#inActivo").on("change", buscarDisp);
-	});
+	});*/
 	
 
 	function ValDimenDisp(){
@@ -234,7 +231,6 @@
 		}
 		else {
 			$.ajax({
-
 				data: {nomActivo: activo},
 				url:   'buscarValdisp.php',
 				type:  'post',
@@ -242,8 +238,7 @@
 				beforeSend: function(){
 				},
 				success: function(resultado){
-					//lo que se si el destino devuelve algo
-					
+					//lo que se si el destino devuelve algo	
 					$("#ValDispo").html(resultado);
 				},
 				error:    function(xhr,err){ 
@@ -251,18 +246,16 @@
 				}
 			});
 		}
-		
 	}
  </script>
  
  
  <script>
-	$(document).ready(function(){
-		$("#inActivo").on("change", buscarDeg);
-	});
-	
+//	$(document).ready(function(){
+//		$("#inActivo").on("change", buscarDeg);
+//	});
 
-	function ValDegradacion(){
+function ValDegradacion(){
 
 		var activo = $("#inActivo").val();
 		
@@ -288,7 +281,6 @@
 				}
 			});
 		}
-		
 	}
  </script>
  
@@ -302,6 +294,9 @@
 		var valInte = $("#ValInteg").val();
 		var valDis = $("#ValDispo").val();
 		var valDeg = $("#ValDeg").val();
+		
+		
+		
 			
 		$.ajax({
 
@@ -317,20 +312,19 @@
 					$("#impaInt").html(data.impactoInt);
 					$("#impaDisp").html(data.impactoDisp);
 					$("#impaTot").html(data.impacTotal);
-					$("#riesgIn").html(data.impacTotal); //completar con la otra funcionalidad
-
+					$("#riesgIn").html(data.riesInherente);
 				},
 				error:    function(xhr,err){ 
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
 				}
 			});
-	
-		
 	}
  </script>
  
    <script>
+		   
 	function guardar(){
+		
 		
 		var activo = $("#inActivo").val();
 		var valCo = $("#impaConf").val();
@@ -339,25 +333,21 @@
 		var impTotal = $("#impaTot").val();
 		var riesInhe = $("#riesgIn").val();
 		
-		
 		$.ajax({
-
 				data: {nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, iTotal: impTotal, rInhe: riesInhe },
 				url:   'GuardarCalculos.php',
 				type:  'post',
-				
-				beforeSend: function(){
+				dataType: 'json',
+				beforeSend: function(){			
 				},
 				success: function(data){
-					//var resuesta = data.val();
-					//alert(resuesta);
+					var resuesta = data.val();
+					alert(resuesta);
 				},
-				error:    function(xhr,err){ 
+				error:    function(xhr,err){
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
 				}
 			});
-	
-		
 	}
  </script>
 

@@ -94,6 +94,44 @@
 			
 		}
 		
+		protected function PosvalImpacto($valImpacto) {
+			
+			$posValImpac=0;
+			
+			if($valImpacto == "INSIGNIFICANTE"){
+				$posValImpac=0;
+			}else if($valImpacto == "BAJO"){
+				$posValImpac=1;
+			}else if($valImpacto == "MODERADO"){
+				$posValImpac=2;
+			}else if($valImpacto == "MAYOR"){
+				$posValImpac=3;	
+			}else if($valImpacto == "CATASTROFICO"){
+				$posValImpac=4;	
+			}
+			return $posValImpac;
+		}
+		
+		protected function PosvalProba($valProba) {
+			
+			$posValProba=0;
+			
+			if($valProba == "MUY FRECUENTE"){
+				$posValProba=0;
+			}else if($valProba == "PROBABLE"){
+				$posValProba=1;
+			}else if($valProba == "PUEDE OCURRIR"){
+				$posValProba=2;
+			}else if($valProba == "EVENTUALMENTE"){
+				$posValProba=3;	
+			}else if($valProba == "RARA VEZ"){
+				$posValProba=4;	
+			}
+			
+			return $posValProba;
+			
+		}
+		
 		
 		public function CalcImpactActivo($ValorActivo){
 			
@@ -120,6 +158,15 @@
 			return $resTemp;
 		}
 		
+		public function CalcrInherente($probabilidad, $vImpacto){
+			
+			$posProbabi = $this->PosvalProba($probabilidad);
+			$posValImpacto = $this->PosvalImpacto($vImpacto);
+			return $this->matRIneherente[$posProbabi][$posValImpacto];
+		}
+		
 	}
+
+	
 
 ?>

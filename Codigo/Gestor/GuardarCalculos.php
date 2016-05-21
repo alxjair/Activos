@@ -10,6 +10,9 @@ $ImpactoDisp = $_POST['disp'];
 $riesgoInherente = $_POST['rInhe'];
 $impactoTotal= $_POST['iTotal'];
 
+echo $nActivo;
+
+
 $consulta= $conexion -> query ("SELECT Id_Activo FROM activo WHERE Nom_Activo = '$nActivo';");
 
 $idActivo=0;
@@ -19,11 +22,12 @@ while  ($row = $conexion->recorrer($consulta)){
 
 $idImpActivo = $idActivo;
 
-$sql = "INSERT INTO `impacto_por_dimension`(`Impacto_Id_Impacto`, `Impacto_Total`, `Activo_Id_Activo`, `ImpactoConf`, `ImpactoDis`, `ImpactoInte`) VALUES ('$idImpActivo','$impactoTotal','$idActivo','$impactoConf','$ImpactoDisp','$impactoInt')";
+$sql = "INSERT INTO `impacto_por_dimension`(`Impacto_Id_Impacto`, `Impacto_Total`, `Activo_Id_Activo`, `ImpactoConf`, `ImpactoDis`, `ImpactoInte`) VALUES ('$idImpActivo','$impactoTotal','$idActivo','$impactoConf','$ImpactoDisp','$impactoInt');";
+
+$sql2 = "UPDATE activo SET Riesgo_inherente='$riesgoInherente' WHERE Id_Activo='$idActivo';";
 
 
-
-if (mysqli_query($conexion, $sql)){
+if (mysqli_query($conexion, $sql) && mysqli_query($conexion, $sql2)){
     echo "Registros almacenados con Exito";
 } else {
     echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
@@ -31,14 +35,6 @@ if (mysqli_query($conexion, $sql)){
 
 
 
-//echo $idImpActivo;
-
 mysqli_close($conexion);
-
-
-
-
-
-
 
 ?>
