@@ -38,7 +38,7 @@
          
        <div>
             <label class="col-sm">Seleccione un Activo</label>
-               <select class="form-control" name="NombreActivo" id="inActivo" onchange="ValDimenciones();ValDimenInt();ValDimenDisp();ValDegradacion()">
+               <select class="form-control" name="NombreActivo" id="inActivo" onchange="ValDimensiones();ValDegradacion()">
                   <option value="">-Selecciona un Activo-</option>
                </select>
        </div>
@@ -52,6 +52,7 @@
            <label>Valor Integridad</label>
                <output type="text" class="form-control" name="ValorIntegridad" id="ValInteg"/>
        </div> 
+       
        <div>
                <label>Valor Disponibilidad</label>
                <output type="text" class="form-control" name="ValorDisponi" id="ValDispo"/>  
@@ -70,16 +71,14 @@
        <div>
                <label>Impacto Integridad</label>
                <output type="text" class="form-control" name="ImpactoInt" id="impaInt"/>  
-       </div>
-             
-             
+       </div>   
               
        <div>
                <label>Impacto Disponibilidad</label>
                <output type="text" class="form-control" name="ImpactoDisp" id="impaDisp"/>  
        </div>
             
-            <div>
+       <div>
                <label>Impacto Total</label>
                <output type="text" class="form-control" name="ImpactoTotal" id="impaTot"/>  
        </div>
@@ -117,7 +116,6 @@
 	
 	function buscarActivo()
 	{
-		
 		$("#inActivo").html("<option value=''>- primero seleccione un activo -</option>");
 
 		var area = $("#inArea").val();
@@ -136,7 +134,7 @@
 					$("#inActivo").html("<option value=''>- primero seleccione un Activo -</option>");
 				},
 				success: function(data){
-					$("#inActivo").html("<option value=''>- primero seleccione un Area -</option>");
+					//$("#inActivo").html("<option value=''>- primero seleccione un Area -</option>");
 					//lo que se si el destino devuelve algo
 					$("#inActivo").html(data);
 				},
@@ -149,81 +147,10 @@
 	}
 	
 </script>
-    
-  <script>
-	/*$(document).ready(function(){
-		$("#inActivo").on("change", buscarConf);
-	});*/
-	
-
-	function ValDimenciones(){
-		var activo = $("#inActivo").val();
-		
-		if(activo == ""){
-				alert("Seleccione un Activo para continuar");
-		}
-		else {
-			$.ajax({
-
-				data: {nomActivo: activo},
-				url:   'buscarValconf.php',
-				type:  'post',
-
-				beforeSend: function(){
-				},
-				success: function(resultado){
-					//lo que se si el destino devuelve algo
-					
-					$("#ValConf").html(resultado);
-				},
-				error:    function(xhr,err){ 
-					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
-				}
-			});
-		}
-	}
- </script>
- 
- <script>
-	/*$(document).ready(function(){
-		$("#inActivo").on("change", buscarInt);
-	});*/
-	
-
-	function ValDimenInt(){
-		var activo = $("#inActivo").val();
-		
-		if(activo == ""){
-				alert("Seleccione un Activo para continuar");
-		}
-		else {
-			$.ajax({
-
-				data: {nomActivo: activo},
-				url:   'buscarValint.php',
-				type:  'post',
-				beforeSend: function(){
-				},
-				success: function(resultado){
-					//lo que se si el destino devuelve algo
-					
-					$("#ValInteg").html(resultado);
-				},
-				error:    function(xhr,err){ 
-					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
-				}
-			});
-		}		
-	}
- </script>
  
   <script>
-	/*$(document).ready(function(){
-		$("#inActivo").on("change", buscarDisp);
-	});*/
 	
-
-	function ValDimenDisp(){
+	function ValDimensiones(){
 		var activo = $("#inActivo").val();
 		
 		if(activo == ""){
@@ -232,14 +159,16 @@
 		else {
 			$.ajax({
 				data: {nomActivo: activo},
-				url:   'buscarValdisp.php',
+				url:   'buscarValDimensiones.php',
 				type:  'post',
-
+				dataType: 'json',
 				beforeSend: function(){
 				},
-				success: function(resultado){
+				success: function(data){
 					//lo que se si el destino devuelve algo	
-					$("#ValDispo").html(resultado);
+					$("#ValDispo").html(data.valDisp);
+					$("#ValInteg").html(data.valInt);
+					$("#ValConf").html(data.valConf);
 				},
 				error:    function(xhr,err){ 
 					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
@@ -251,9 +180,6 @@
  
  
  <script>
-//	$(document).ready(function(){
-//		$("#inActivo").on("change", buscarDeg);
-//	});
 
 function ValDegradacion(){
 
@@ -268,7 +194,7 @@ function ValDegradacion(){
 				data: {nomActivo: activo},
 				url:   'buscarValdeg.php',
 				type:  'post',
-
+				//dataType: 'json',
 				beforeSend: function(){
 				},
 				success: function(resultado){
@@ -293,11 +219,7 @@ function ValDegradacion(){
 		var valCo = $("#ValConf").val();
 		var valInte = $("#ValInteg").val();
 		var valDis = $("#ValDispo").val();
-		var valDeg = $("#ValDeg").val();
-		
-		
-		
-			
+		var valDeg = $("#ValDeg").val();	
 		$.ajax({
 
 				data: {area: area, nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, degrada: valDeg},
@@ -333,21 +255,28 @@ function ValDegradacion(){
 		var impTotal = $("#impaTot").val();
 		var riesInhe = $("#riesgIn").val();
 		
+		alert(impTotal.length);
+		
+		if (){
+			alert("No pueden haber valores en blanco");
+		}
+		else{
 		$.ajax({
 				data: {nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, iTotal: impTotal, rInhe: riesInhe },
 				url:   'GuardarCalculos.php',
 				type:  'post',
-				dataType: 'json',
+				
 				beforeSend: function(){			
 				},
 				success: function(data){
 					var resuesta = data.val();
-					alert(resuesta);
+					alert(data);
 				},
 				error:    function(xhr,err){
-					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+					//alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
 				}
 			});
+		}
 	}
  </script>
 

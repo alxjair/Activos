@@ -33,8 +33,6 @@ if (mysqli_query($conexion, $sql) && mysqli_query($conexion, $sql2)){
     echo "Error: " . $sql . "<br>" . mysqli_error($conexion);
 }
 
-
-
 mysqli_close($conexion);
 
 ?>
