@@ -1,3 +1,13 @@
+/**
+******************************************************
+* @file buscarValdeg.php
+* @brief Archivo encargado de consultar en la base de datos el valor de la degradacion del activo.
+* @author Grupo Proyecto Sistema de Gestión Activos de Información ingesoft2
+* @version 3.0
+* @date Mayo 2016
+*******************************************************/
+
+
 <?php
 
 require_once ('../class.Conexion.php');

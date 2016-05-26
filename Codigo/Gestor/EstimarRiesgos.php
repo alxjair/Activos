@@ -178,13 +178,10 @@
  
  
  <script>
-<<<<<<< HEAD
-function ValDegradacion(){
-=======
+
 
 function ValDegradacion(){
 
->>>>>>> origin/master
 		var activo = $("#inActivo").val();
 		
 		if(activo == ""){

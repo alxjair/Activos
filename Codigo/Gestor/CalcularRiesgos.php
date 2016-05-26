@@ -1,11 +1,20 @@
+
+/**
+******************************************************
+* @file CalcularRiesgos.php
+* @brief Archivo encargado de comunicar con la clase de calculo y manejar la entrada y salida de los datos a calcular y calculados respectivamente.
+* @author Grupo Proyecto Sistema de Gestión Activos de Información ingesoft2
+* @version 3.0
+* @date Mayo 2016
+*******************************************************/
+
+
 <?php
 	
 require ('../class.Conexion.php');
 include ('class.CalcRiesgos.php');
-<<<<<<< HEAD
 
-=======
->>>>>>> origin/master
+
 $conexion = new Conexion();
 
 $valCon = $_POST['confi']; 
@@ -23,13 +32,13 @@ $ImpacTotal = $riesgoActivo -> CalcImpactTotalActivo($riesgConf, $riesInt, $ries
 $sql = $conexion -> query ("SELECT Id_Activo FROM activo WHERE Nom_Activo = '$activo';");
 $idActv=0;
 
-<<<<<<< HEAD
+
 while  ($row = $conexion->recorrer($sql)){
 	$idActv= $row["Id_Activo"];
 }
 
 $sql2 = $conexion -> query ("SELECT Probabilidad_Ocurrencia FROM Activo_has_Amenazas WHERE Activo_Id_Activo = '$idActv';");
-=======
+
 $sql = $conexion -> query ("SELECT Id_Activo FROM activo WHERE Nom_Activo = '$activo';");
 
 $idActv=0;
@@ -40,7 +49,7 @@ while  ($row = $conexion->recorrer($sql)){
 
 $sql2 = $conexion -> query ("SELECT Probabilidad_Ocurrencia FROM Activo_has_Amenazas WHERE Activo_Id_Activo = '$idActv';");
 
->>>>>>> origin/master
+
 $probabilidad="";
 while  ($row1 = $conexion->recorrer($sql2)){
 	$probabilidad= $row1["Probabilidad_Ocurrencia"];
@@ -50,15 +59,14 @@ if($probabilidad!=""){
 	$riesInherente = $riesgoActivo -> CalcrInherente($probabilidad,$ImpacTotal);	
 }
 
-<<<<<<< HEAD
-$datos = array ("impactoConf"=>$riesgConf,"impactoInt"=>$riesInt,"impactoDisp"=>$riesDisp,"impacTotal" =>$ImpacTotal, "riesInherente"=>$riesInherente);
-echo json_encode($datos);
-exit();
-=======
 
 $datos = array ("impactoConf"=>$riesgConf,"impactoInt"=>$riesInt,"impactoDisp"=>$riesDisp,"impacTotal" =>$ImpacTotal, "riesInherente"=>$riesInherente);
 echo json_encode($datos);
 exit();
 
->>>>>>> origin/master
+
+$datos = array ("impactoConf"=>$riesgConf,"impactoInt"=>$riesInt,"impactoDisp"=>$riesDisp,"impacTotal" =>$ImpacTotal, "riesInherente"=>$riesInherente);
+echo json_encode($datos);
+exit();
+
 ?>

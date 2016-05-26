@@ -1,21 +1,40 @@
 <?php
-	class CalcRiesgos{
+
+/**
+******************************************************
+* @file class.CalcRiesgos.php
+* @class
+* @brief Clase encargada de realizar los principales calculos de riesgos a los activos de informacion.
+* @author Grupo Proyecto Sistema de Gestión Activos de Información ingesoft2
+* @version 3.0
+* @date Mayo 2016
+*******************************************************/
+
+class CalcRiesgos{
+	
+	
+/**
+ * @brief Conjunto de Atributos que son parte de la clase.
+ * @param [string] $ImpactoAcumuladoActivo Acumula el valor de todos los impactos para el calculo del Riesgo Inherente.
+ * @param [string] $matRIneherente Contiene la matriz que realiza los cruces de las dimenciones necesarios para el calculo del Riesgo Inherente.
+ * @param [string] $matImpacto Contiene la matriz que realiza los cruces de las dimenciones necesarios para el calculo del Riesgo Inherente.
+ * @param [string] $matRIneherente Contiene la matriz que que realiza los cruces de las dimenciones necesarios para el calculo del Impacto por dimesion.
+ * @param [string] $ValorDegradacion Valor de la degradacion causada a un activo.
+ */
 		
-		
-		/*private $ImpactoActivoConf;
-		private $ImpactoActivoInt;
-		private $ImpactoActivoDisp;*/
 		private $ImpactoAcumuladoActivo;
 		protected $matRIneherente;
 		protected $matImpacto;
-		protected $ValorActivo;
 		protected $ValorDegradacion;
 		
-		//$valAcConf, $valAcInt, $valAcDisp
+
+/**
+ * @brief Constructor de la clase que realizara la inicializacion de las matrices de calculo con los valores definidos e iniciaña el valor de la degradacion.
+ * @param [string] Se inicializa la clase con el valor de la degradacion de un activo de manera obligatoria.
+ * @return Sin retorno.
+ */
 		public function __construct($valDeg){
-			/*$this->ImpactoActivoConf = $valAcConf;
-			$this->ImpactoActivoInt = $valAcInt;
-			$this->ImpactoActivoDisp = $valAcDisp;*/
+
 			$this->ValorDegradacion= $valDeg;
 			
 			$this->matImpacto = array(		array("MODERADO", "MODERADO", "MAYOR", "CATASTROFICO", "CATASTROFICO"),
@@ -32,8 +51,12 @@
 										  	array("BAJO", "BAJO", "MODERADO", "ALTO", "ALTO"),
 										 );
 		}
-		
-		
+	
+/*
+* @brief Metodo Protegido que realiza la homologacion del Valor del Impacto de manera numerica.		
+* @param [string] $vRiesgo - Valor cualitativo activo en la dimension requerida.
+* @return string $vImpacto - Valor cuantitativo del impacto.
+*/	
 		protected function ValImpacto($vRiesgo){
 						
 			$vImpacto =0;
@@ -51,7 +74,12 @@
 			return $vImpacto;	
 		}
 		
-		
+
+/*
+* @brief Metodo Protegido que calculara la posicion en la matriz correspondiente al valor del activo en la dimension requerida.		
+* @param [string] $valActivo - Valor cualitativo del activo en la dimension correspondiente
+* @return string $posValActivo - Valor de la posicion en el eje correspondiente al valor de activo para ser ubicado en la matriz de Impactos.
+*/	
 		
 		protected function Posvalactivo($valActivo) {
 			
@@ -69,9 +97,14 @@
 				$posValActivo=4;	
 			}
 			
-			return $posValActivo;
-			
+			return $posValActivo;	
 		}
+	
+/*
+* @brief Metodo Protegido que calculara la posicion en la matriz correspondiente al valor de la degradación en la dimensión requerida.		
+* @param [string] $valDeg - Valor cualitativo de la degradacion que tiene un activo a causa de una amenaza
+* @return int $posValDegActivo - Valor de la posicion en el eje correspondiente al valor de la degradación para ser ubicado en la matriz de impactos.
+*/
 		
 		protected function PosDegractivo($valDeg) {
 			
@@ -91,6 +124,11 @@
 			return $posValDegActivo;
 			
 		}
+/*
+* @brief Metodo Protegido que calculara la posicion en la matriz correspondiente al valor del Impacto total.		
+* @param [string] $valImpacto - Valor cualitativo del impacto que tiene un activo de acuerdo al cruce del valor y la degradación.
+* @return int $posValImpac - Valor de la posicion en el eje correspondiente al valor del impacto para ser ubicado en la matriz de impactos.
+*/
 		
 		protected function PosvalImpacto($valImpacto) {
 			
@@ -109,6 +147,12 @@
 			}
 			return $posValImpac;
 		}
+		
+/*
+* @brief Metodo Protegido que calculara la posicion en la matriz correspondiente al valor de la probabilidad de ocurrencia.
+* @param [string] $valProba - Valor cualitativo de la probabilidad de ocurrenciaque tiene una amenaza.
+* @return int $posValProba - Valor de la posicion en el eje correspondiente al valor del impacto para ser ubicado en la matriz de impactos.
+*/
 		
 		protected function PosvalProba($valProba) {
 			
@@ -130,13 +174,26 @@
 			
 		}
 		
-		
-		public function CalcImpactActivo($ValorActivo){
-			
+/*
+* @brief Metodo Publico que realiza el calculo del impacto en la dimencion correspondiente.
+* @param [string] $ValorActivo - Valor cualitativo correspondiente al activo.
+* @return string matImpacto[$posValActivo][$posValDegrada] - Valor del impacto deacuerdo al cruce posicional obtenido con los metodos.
+*/
+		public function CalcImpactActivo($ValorActivo){	
 			$posValActivo = $this->Posvalactivo($ValorActivo);
 			$posValDegrada = $this->PosDegractivo($this->ValorDegradacion);
 			return $this->matImpacto[$posValActivo][$posValDegrada];
 		}
+		
+
+	
+/*
+* @brief Metodo Publico que calcula el riesgo Total de un activo sumando todas las dimensiones.
+* @param [string] $Iconf - Valor Impacto Confidencialidad.
+* @param [string] $Iinte - Valor Impacto Integridad.
+* @param [string] $Idisp - Valor Impacto Disponibilidad.
+* @return string $resTemp - Valor cualitativo del impacto total.
+*/
 		
 		public function CalcImpactTotalActivo($Iconf,$Iinte,$Idisp){
 			
@@ -156,6 +213,14 @@
 			return $resTemp;
 		}
 		
+		
+/*
+* @brief Metodo Publico que calcula el riesgo Inherente de un activo.
+* @param [string] $vImpacto - Valor cualitativo total del impacto en el activo.
+* @param [string] $probabilidad - Valor cualitativo de la probabilidad de ocurrencia.
+* @return string matRIneherente[$posProbabi][$posValImpacto] - Valor del riesgo inherente deacuerdo al cruce posicional obtenido con los metodos.
+*/
+		
 		public function CalcrInherente($probabilidad, $vImpacto){
 			
 			$posProbabi = $this->PosvalProba($probabilidad);
@@ -164,10 +229,5 @@
 		}
 		
 	}
-<<<<<<< HEAD
-=======
 
-	
-
->>>>>>> origin/master
 ?>
