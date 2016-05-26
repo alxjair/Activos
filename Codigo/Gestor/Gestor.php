@@ -27,17 +27,23 @@
        <ul class="ca-menu">
                         
                        <li>
-                            <a href="../Comunes/IngActivos.php">
+                            <a href="ingresarAmenaza.php">
+                                <span class="ca-icon">X</span>
+                                <div class="ca-content">
+                                    <h2 class="ca-main">Ingresar Amenazas</h2>
+                                </div>
+                            </a>
+                        </li>    
+                       <li>
+                            <a href="EstimarRiesgos.php">
                                 <span class="ca-icon">u</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Calculos de Riesgo</h2>
-                                    <h3 class="ca-sub">Agregar Usuarios al sistema</h3>
                                 </div>
                             </a>
                         </li>
                                                                    
                         <li>
-                            <a href="../Comunes/IngActivos.php">
                                 <span class="ca-icon">A</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Registrar Activos</h2>
