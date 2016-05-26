@@ -3,12 +3,18 @@
 require ('../class.Conexion.php');
 include ('class.CalcRiesgos.php');
 $conexion = new Conexion();
+<<<<<<< HEAD
+$conexion = new Conexion();
+$nActivo= $_POST['nomActivo'];
+$consulta= $conexion -> query ("SELECT * FROM activo WHERE Nom_Activo = '$nActivo';");
+=======
 
 $conexion = new Conexion();
 
 $nActivo= $_POST['nomActivo'];
 $consulta= $conexion -> query ("SELECT * FROM activo WHERE Nom_Activo = '$nActivo';");
 
+>>>>>>> origin/master
 $resultDisp="";
 $resultCof="";
 $resultInt="";
@@ -54,10 +60,16 @@ while  ($row = $conexion->recorrer($consulta)){
 	}
 	
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
 mysqli_close($conexion);
 $datos = array ("valConf"=>$resultCof,"valInt"=>$resultInt,"valDisp"=>$resultDisp);
 echo json_encode($datos);
 exit();
+<<<<<<< HEAD
+=======
 
+>>>>>>> origin/master
 ?>

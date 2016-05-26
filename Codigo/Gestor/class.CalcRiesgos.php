@@ -1,5 +1,4 @@
 <?php
-
 	class CalcRiesgos{
 		
 		
@@ -12,7 +11,6 @@
 		protected $ValorActivo;
 		protected $ValorDegradacion;
 		
-
 		//$valAcConf, $valAcInt, $valAcDisp
 		public function __construct($valDeg){
 			/*$this->ImpactoActivoConf = $valAcConf;
@@ -166,7 +164,10 @@
 		}
 		
 	}
+<<<<<<< HEAD
+=======
 
 	
 
+>>>>>>> origin/master
 ?>

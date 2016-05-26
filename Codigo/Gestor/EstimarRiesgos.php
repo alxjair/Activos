@@ -1,3 +1,5 @@
+<!--EN ESTA CLASE ES UNA DE LASP RINCIPALES YA QUE SE ESTIMAN LOS IMPACTOS DE LOS RIEGOS QUE SE INGRESAN AL SISTEMA, PARA HACER EL CALCULO TOTAL Y ASI GUARDAR LOS DATOS EN LA BASE DE DATOS PARA HACER USO DE ESTOS MAS ADELANTE-->
+
 <?php
 	require_once("busquedasDB.php");
 	require_once ('../class.Conexion.php');
@@ -117,19 +119,15 @@
 	function buscarActivo()
 	{
 		$("#inActivo").html("<option value=''>- primero seleccione un activo -</option>");
-
 		var area = $("#inArea").val();
-
 		if(area == ""){
 				$("#inActivo").html("<option value=''>- primero seleccione un Area -</option>");
 		}
 		else {
 			$.ajax({
-
 				data: {nomArea: area},
 				url:   'buscarActivo.php',
 				type:  'post',
-
 				beforeSend: function(){
 					$("#inActivo").html("<option value=''>- primero seleccione un Activo -</option>");
 				},
@@ -180,9 +178,13 @@
  
  
  <script>
+<<<<<<< HEAD
+function ValDegradacion(){
+=======
 
 function ValDegradacion(){
 
+>>>>>>> origin/master
 		var activo = $("#inActivo").val();
 		
 		if(activo == ""){
@@ -190,7 +192,6 @@ function ValDegradacion(){
 		}
 		else {
 			$.ajax({
-
 				data: {nomActivo: activo},
 				url:   'buscarValdeg.php',
 				type:  'post',
@@ -221,12 +222,10 @@ function ValDegradacion(){
 		var valDis = $("#ValDispo").val();
 		var valDeg = $("#ValDeg").val();	
 		$.ajax({
-
 				data: {area: area, nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, degrada: valDeg},
 				url:   'CalcularRiesgos.php',
 				type:  'post',
 				dataType: 'json',
-
 				beforeSend: function(){
 				},
 				success: function(data){
