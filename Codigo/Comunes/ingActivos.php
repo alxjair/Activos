@@ -1,9 +1,9 @@
 <?php
-	require ('../class.Conexion.php');
-	$db = new Conexion();
+    require ('../class.Conexion.php');
+    $db = new Conexion();
 ?>
-
-
+ 
+ 
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -11,13 +11,13 @@
     <title>Formularios Activos</title>
     <link rel="stylesheet" href="../../Estilos/css/bootstrap.min.css">
 </head>
-
+ 
 <body>
   <form action="IngresarActivos.php?modo=insertActivo" method="post"> 
    <div class="container-fluid well ">
        <img src="../../Imagenes/logoMUNDIAL.png" class="image-responsive">
    </div>
-   
+    
     <div class="container well">
         <center><h1>Registro de Activos de Informacion</h1></center>
         <br>
@@ -39,9 +39,10 @@
                 <label>Soporte Funcional</label>
                 <input type="text" class="form-control" id="formGroup" name="SopFuncional" required="" pattern="[A-Za-z ]+">
                 <br>
-                
+                 
             <label class="col-sm">Clasificacion del Activo</label>
                 <select class="form-control" name="Clasificacion">
+                    <option>-Seleccione una opcion-</option>
                      <?php
                         $sql= $db -> query ("SELECT * FROM clasificacion_activo ;");
                         while($row = $db -> recorrer($sql)) {
@@ -53,6 +54,7 @@
             <br>
             <label class="col-sm">Area</label>
                 <select class="form-control" name="Area" >
+                   <option>-Seleccione una opcion-</option>
                     <?php
                         $sql= $db -> query ("SELECT * FROM area ;");
                         while($row = $db -> recorrer($sql)) {
@@ -64,29 +66,31 @@
             <br>
              <label class="col-sm">Valor Confidencialidad</label>
                 <select class="form-control" name="ValConfidencialidad" >
+                   <option>-Seleccione una opcion-</option>
                     <?php
                         $sql= $db -> query ("SELECT * FROM confidencialidad ;");
                         while($row = $db -> recorrer($sql)) {
-                            $tConfi=$row["Nom_Confidencialidad"];
+                            $tConfi=$row["val_Confidencialidad"];
                             echo "<option>$tConfi</option>";
                         }
                     ?>
                 </select>
              <br>
-             
+              
              <label class="col-sm">Valor Integridad</label>
                 <select class="form-control" name="ValIntegridad" >
+                   <option>-Seleccione una opcion-</option>
                     <?php
                         $sql= $db -> query ("SELECT * FROM integridad ;");
                         while($row = $db -> recorrer($sql)) {
-                            $tInteg=$row["Nom_Integridad"];
+                            $tInteg=$row["val_Integridad"];
                             echo "<option>$tInteg</option>";
                         }
                     ?>
                 </select>
              <br>
             </div>
-            
+             
             <div class="col-sm-6">
                 <label>Remitente/Destinatario/No Aplica</label>
                 <input type="text" class="form-control" id="formGroup" name="Remitente" required="" pattern="[A-Za-z ]+"> 
@@ -101,7 +105,8 @@
                 <input type="text" class="form-control" id="formGroup" name="SopTecnico" required="" pattern="[A-Za-z ]+">
              <br>                  
              <label class="col-sm">Tipo de activo</label>
-                 <select class="form-control" name="TipoActivo" >
+                 <select class="form-control" name="TipoActivo">
+                   <option>-Seleccione una opcion-</option>
                     <?php
                         $sql= $db -> query ("SELECT * FROM tipo_activo ;");
                         while($row = $db -> recorrer($sql)) {
@@ -113,6 +118,7 @@
              <br>
              <label class="col-sm">Medio de Almacenamiento</label>
                  <select class="form-control" name="MedioAlmacenamiento" >
+                   <option>-Seleccione una opcion-</option>
                     <?php
                         $sql= $db -> query ("SELECT * FROM med_almacenamiento ;");
                         while($row = $db -> recorrer($sql)) {
@@ -124,10 +130,11 @@
              <br>
             <label class="col-sm">Valor Disponibilidad</label>
                 <select class="form-control" name="ValDisponibilidad" >
+                   <option>-Seleccione una opcion-</option>
                     <?php
                         $sql= $db -> query ("SELECT * FROM disponibilidad ;");
                         while($row = $db -> recorrer($sql)) {
-                            $tNdisp = $row["Nom_Disponibilidad"];
+                            $tNdisp = $row["val_Disponibilidad"];
                             echo "<option>$tNdisp</option>";
                         }
                     ?>
@@ -135,6 +142,7 @@
              <br>
              <label class="col-sm">Valor Entrada/Salida</label>
                 <select class="form-control" name="EntradaActivo" >
+                   <option>-Seleccione una opcion-</option>
                     <option >ENTRADA</option>
                     <option >SALIDA</option>
                     <option >ENTRADA/SALIDA</option>
