@@ -1,6 +1,17 @@
+/**
+******************************************************
+* @file class.IngresarActivos.php
+* @brief Archivo encargado de añadir activos a la base de datos.
+* @author Grupo Proyecto Sistema de Gestión Activos de Información ingesoft2
+* @version 3.0
+* @date Mayo 2016
+*******************************************************/
+
 <?php
 
 class IngresarActivos {
+    
+ 
     
     protected $user;
     protected $pass;
@@ -9,6 +20,12 @@ class IngresarActivos {
     protected $perfil;
     protected $idUsuario;
     protected $mailUsuario;
+    
+    
+/**
+ * @brief Constructor de la clase que realizara la inicializacion de las variables que entran por parametro y se hace la asignacion a cada una de ellas.
+ * @return Sin retorno.
+ */
     
     public function __construct($usuario,$password,$estate,$name,$perf,$id,$mail){
         $this->idUsuario = $id;
@@ -20,6 +37,10 @@ class IngresarActivos {
         $this->mailUsuario = $mail;
     }
     
+ /**
+ * @brief Se inicia un proceso de conexion a la base de datos y se verifica cada uno los perfiles a guarduar y se hace el ingreso a la base de datos ya con todos los campos llenos.
+ * @return Sin retorno.
+ */   
     public function insertUser(){
         
         $db = new Conexion();

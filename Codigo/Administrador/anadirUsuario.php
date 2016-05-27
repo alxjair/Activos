@@ -1,3 +1,12 @@
+/**
+******************************************************
+* @file anadirUsuario.php
+* @brief Archivo encargado de añadir usuarios a la base de datos con sus respectivos campos.
+* @author Grupo Proyecto Sistema de Gestión Activos de Información ingesoft2
+* @version 3.0
+* @date Mayo 2016
+*******************************************************/
+ 
 <?php 
 
 require ('../class.Conexion.php');

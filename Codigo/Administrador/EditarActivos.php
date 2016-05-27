@@ -1,183 +1,329 @@
+<?php
+	require_once("../Gestor/busquedasDB.php");
+	require_once ('../class.Conexion.php');
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8">    
+    <title>Formularios Activos</title>
     <link rel="stylesheet" href="../../Estilos/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../Estilos/css/editarActivos.css">
-    <title>Document</title>
 </head>
+
 <body>
-     <div class="container-fluid well ">
+  <form method="post" id = "formRiesgos" name = "formuRies"> 
+   <div class="container-fluid well ">
        <img src="../../Imagenes/logoMUNDIAL.png" class="image-responsive">
    </div>
    
-   
-    <div class="container-fluid">
-         <div class="row">
-            <div class="col-sm-3 col-md-2 sidebar ">
-                <select multiple class="form-control" size="40">
-                   <option>1sdadad</option> 
-                   <option>2</option> 
-                   <option>3</option> 
-                   <option>4</option> 
-                   <option>5</option> 
-                   <option>5</option> 
-                   <option>5</option> 
-                   <option>5</option>   
-                   <option>5</option> 
-                   <option>5</option> 
-                   <option>5</option> 
-                </select>
-            </div> 
-            
-            <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <div class="container well">
-        <center><h1>Registro de Activos de Informacion</h1></center>
-        <form class="form-horizontal">
-        
-        <div class="row">
+ <div class="container well">
+       <center><h1>Modificar Activos de Informacion</h1></center>
+       <form class="form-horizontal">
+       <div>
+            <label class="col-sm">Seleccione el area del activo</label> 
+               <select class="form-control" name="NombreArea" id="inArea" onchange="buscarActivo()">
+                  <option value="">-Selecciona un Area-</option>
+                   <?php
+				   		$areas= buscarArea();
+				   		$db = new conexion();
+				   		while($row = $db-> recorrer($areas)){
+                           $tArea=$row["nom_Area"];
+                           echo "<option>$tArea</option>";
+                       }
+                    ?>	
+               </select>
+       </div>
+         <br>
+       <div>
+            <label class="col-sm">Seleccione un Activo</label>
+               <select class="form-control" name="NombreActivo" id="inActivo" onchange="cargarValores()">
+                  <option value="">-Selecciona un Activo-</option>
+               </select>
+       </div>
+               
+        <br>      
+       <div class="row">
+           
             <div class="col-sm-6">
-                <label>Codigo</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
-                <br>
+      
                 <label>Nombre del Activo</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
+                <input type="text" class="form-control" name="NomActivo" id="nActivo" required="" pattern="[A-Za-z ]+">
                 <br>
                 <label>Propietario del Activo</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
+                <input type="text" class="form-control" id="nPropietario" name="NomPropietario" required="" pattern="[A-Za-z ]+">
                 <br>
                 <label>Descripcion del Activo</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
+                <input type="text" class="form-control" id="ndescActivo" name="DescActivo" required="" pattern="[A-Za-z ]+">
                 <br>
                 <label>Soporte Funcional</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
+                <input type="text" class="form-control" id="nsopFuncional" name="SopFuncional" required="" pattern="[A-Za-z ]+">
                 <br> 
                 
             <label class="col-sm">Clasificacion del Activo</label> 
-                <select class="form-control" name="Clasificacion" disabled>
-                   <option value="black">APLICACION</option>
-                    <option value="black">SOFTWARE UTILITARIO</option>
-                    <option value="green">MODULO SISTEMA CORE</option>
-                    <option value="red">MANUALES Y DOCUMENTACION DE PROCESOS</option>
-                    <option value="yellow">HERRAMIENTAS DE SOFTWARE DE USUARIO FINAL (HSUF)</option>
-                    <option value="white">EQUIPOS DE COMPUTO</option>
-                    <option value="white">EQUIPOS DE COMPUTO DE USUARIO FINAL (ECUF)</option>
-                    <option value="white">INFORMACION ELECTRONICA</option>
-                    <option value="white">INFORMACION FISICA</option>
-                    <option value="white">EQUIPOS DE OFICINA</option>
-                    <option value="white">SERVICIOS (INCLUYE SERV. PUBLICOS Y SERV. CONTRATADOS)</option>
-                    <option value="white">OTROS ACTIVOS DE INFORMACION</option>
+                <select class="form-control" name="Clasificacion" id ="nClasActivo">
+                  <option value="">-Selecciona un Activo-</option>
+                   <?php
+                        $sql= $db -> query ("SELECT * FROM clasificacion_activo ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $cActivo=$row["Nom_Clasificacion_Activo"];
+                            echo "<option>$cActivo</option>";
+                        }
+                    ?>
                 </select>
                 <br />
                 
             <label class="col-sm">Area</label>
-                <select class="form-control" name="area" disabled>
-                    <option value="black">SOFTWARE UTILITARIO</option>
+                <select class="form-control" name="Area"  id = "nArea">
+                    <option value="">-Selecciona un Activo-</option>
+                    <?php
+                        $sql= $db -> query ("SELECT * FROM area ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tArea=$row["nom_Area"];
+                            echo "<option>$tArea</option>";
+                        }
+                    ?>
                 </select>
              <br>
                           
-             <label class="col-sm">Contenedor de Activos</label>
-                <select class="form-control" name="area" disabled>
-                    <option value="black">SI</option>
-                    <option value="green">NO</option>
-                </select>
-                <br>
-                
+                             
              <label class="col-sm">Valor Confidencialidad</label>
-                <select class="form-control" name="area" disabled>
-                    <option value="black">CONFIDENCIAL</option>
-                    <option value="green">PRIVADO</option>
-                    <option value="red">PUBLICO</option>
+                <select class="form-control" name="area" id ="nConfidencialidad">
+                   <option value="">-Selecciona un Activo-</option>
+                    <?php
+                        $sql= $db -> query ("SELECT * FROM confidencialidad ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tConfi=$row["val_Confidencialidad"];
+                            echo "<option>$tConfi</option>";
+                        }
+                    ?>
                 </select>
              <br>
              
              <label class="col-sm">Valor Integridad</label>
-                <select class="form-control" name="area" disabled>
-                    <option value="black">NO CRITICA</option>
-                    <option value="green">CRITICA</option>
+                <select class="form-control" name="integridad" id= "nIntegridad">
+                   <option value="">-Selecciona un Activo-</option>
+                    <?php
+                        $sql= $db -> query ("SELECT * FROM integridad ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tInteg=$row["val_Integridad"];
+                            echo "<option>$tInteg</option>";
+                        }
+                    ?>
                 </select>
              <br>
+            
              
-             <label class="col-sm">Valor Entrada/Salida</label>
-                <select class="form-control" name="area" disabled>
+               <label class="col-sm">Valor Disponibilidad</label>
+                <select class="form-control" name="disponabilidad" id= "nDisponabilidad">
+                  <option value="">-Selecciona un Activo-</option>
+                   <?php
+                        $sql= $db -> query ("SELECT * FROM disponibilidad ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tNdisp = $row["val_Disponibilidad"];
+                            echo "<option>$tNdisp</option>";
+                        }
+                    ?>
+                </select>
+             <br>
+
+            </div>
+            
+            <div class="col-sm-6">
+                <label>Remitente/Destinatario/No Aplica</label>
+                <input type="text" class="form-control" id="nRemitente" name="Remitente" required="" pattern="[A-Za-z ]+"> 
+                <br>
+                <label>Ubicacion</label>
+                <input type="text" class="form-control" id="nUbicacion" name="Ubicacion" required="" pattern="[A-Za-z ]+"> 
+                <br>
+                <label>Custodio del Activo(Cargo-Nombre)</label>
+                <input type="text" class="form-control" id="nCustodioActivo" name="CustodioActivo" required="" pattern="[A-Za-z ]+">
+                <br> 
+                <label>Soporte Tecnico</label>
+                <input type="text" class="form-control" id="nSopTecnico" name="SopTecnico" required="" pattern="[A-Za-z ]+">
+                <br> 
+                
+                               
+             <label class="col-sm">Tipo de activo</label>
+                 <select class="form-control" name="Tipo de activo" id=nTactivo>
+                  <option value="">-Selecciona un Activo-</option>
+                   <?php
+                        $sql= $db -> query ("SELECT * FROM tipo_activo ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tTipo = $row["Nom_Tipo_Activo"];
+                            echo "<option>$tTipo</option>";
+                        }
+                    ?>
+                </select>
+             <br/>
+             
+             <label class="col-sm">Medio de Almacenamiento</label>
+                 <select class="form-control" name="TipoAlma" id="nTipoAlma">
+                    <?php
+                        $sql= $db -> query ("SELECT * FROM med_almacenamiento ;");
+                        while($row = $db -> recorrer($sql)) {
+                            $tMedA = $row["Nom_Med_Almacenamiento"];
+                            echo "<option>$tMedA</option>";
+                        }
+                    ?>
+                </select>
+             <br/>
+             
+             
+               <label class="col-sm">Valor Entrada/Salida</label>
+                <select class="form-control" name="EntradaActivo" id="nEntradaActivo">
                     <option value="black">ENTRADA</option>
                     <option value="green">SALIDA</option>
                     <option value="red">ENTRADA/SALIDA</option>
                     <option value="red">NO APLICA</option>
                 </select>
-             <br>
-            </div>
-            
-            <div class="col-sm-6">
-                <label>Remitente/Destinatario/No Aplica</label>
-                <input type="text" class="form-control" id="formGroup" disabled> 
-                <br>
-                <!-- <label>Destinatario</label>
-                <input type="text" class="form-control" id="formGroup" > 
-                <br> -->
-                <label>Ubicacion</label>
-                <input type="text" class="form-control" id="formGroup" disabled> 
-                <br>
-                <label>Custodio del Activo(Cargo-Nombre)</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
-                <br> 
-                <label>Soporte Tecnico</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
-                <br> 
-                <label>Dependencia de Otros Activos</label>
-                <input type="text" class="form-control" id="formGroup" disabled>
-                <br> 
-                               
-             <label class="col-sm">Tipo de activo</label>
-                 <select class="form-control" name="Tipo de activo" disabled>
-                    <option value="">FISICO</option>
-                    <option value="black">ELECTRONICO</option>
-                </select>
-             <br/>
-             
-             <label class="col-sm">Medio de Almacenamiento</label>
-                 <select class="form-control" name="Tipo de activo" disabled>
-                    <option value="">ELECTRONICO</option>
-                    <option value="black">FISICO</option>
-                    <option value="black">FISICO Y ELECTRONICO</option>
-                </select>
-             <br/>
-             
-            <label class="col-sm">Proceso</label>                   
-                    <select class="form-control" name="proceso" disabled>
-                    <option value="black">SOFTWARE UTILITARIO</option>
-                </select>
-                 <br/>
-                
-                <label class="col-sm">SubProceso</label>                   
-                    <select class="form-control" name="SubProceso" disabled>
-                    <option value="black">SOFTWARE UTILITARIO</option>
-                </select>
-                <br/>
-                
-            <label class="col-sm">Valor Disponibilidad</label>
-                <select class="form-control" name="area" disabled>
-                    <option value="black">INDISPENSABLE</option>
-                    <option value="green">NECESARIA</option>
-                    <option value="red">NORMAL</option>
-                </select>
-             <br>
             </div>
         </div>      
-                <button type="submit" class="btn btn-success" onclick="alert('Se Ha Agregado El Usuario!')">Enviar</button>
-                <button type="reset" class="btn btn-info">Limpiar</button>
-                <button type="submit" class="btn btn-default" onclick="goBack()">Cancelar</button>
-        </form> 
-        </div>  
-        </div>
-     </div>  
-    </div>
-    
-   <script>
-       function goBack() {
+       
+               
+       <div>
+          <br>
+       
+       		   <input class="btn btn-default"type = "button" value = "Actualizar" onclick="calcular()">
+	           <button class="btn btn-success" onclick= "guardar()">Guardar</button>
+               <button type="resetall" class="btn btn-info">Limpiar</button>
+               <button type="submit" class="btn btn-default" onclick="goBack()" >Cancelar</button>
+       </div> 
+       </form>
+   </div>
+</form>
+</body> 
+ 
+  <script>
+      function goBack() {
            window.history.back();
        }
-    </script>
-    
-</body>
+  </script> 
+
+<script>
+	$(document).ready(function(){
+		$("#inArea").on("change", buscarActivo);
+	});
+	
+	
+	function buscarActivo()
+	{
+		$("#inActivo").html("<option value=''>- primero seleccione un activo -</option>");
+
+		var area = $("#inArea").val();
+
+		if(area == ""){
+				$("#inActivo").html("<option value=''>- primero seleccione un Area -</option>");
+		}
+		else {
+			$.ajax({
+
+				data: {nomArea: area},
+				url:   'buscarActivo.php',
+				type:  'post',
+
+				beforeSend: function(){
+					$("#inActivo").html("<option value=''>- primero seleccione un Activo -</option>");
+				},
+				success: function(data){
+					//$("#inActivo").html("<option value=''>- primero seleccione un Area -</option>");
+					//lo que se si el destino devuelve algo
+					$("#inActivo").html(data);
+				},
+				error:    function(xhr,err){ 
+					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+				}
+			});
+		}
+		
+	}
+	
+</script>
+ 
+  <script>
+	function cargarValores(){
+		
+		//$("#nClasActivo").html("<option value=''>- primero seleccione un activo -</option>");
+
+		var activo ?$("#inActivo").val();
+		
+		alert(activo);
+
+		$.ajax({
+
+				data: {nomActivo: activo},
+				url:   'cargarDatos.php',
+				type:  'post',
+				dataType: 'json',
+
+				beforeSend: function(){
+				},
+				success: function(data){
+					
+					$("#nActivo").html(data.nActivo);
+					/*$("#nPropietario").html(data.nPropietario);
+					$("#ndescActivo").html(data.ndescActivo);
+					$("#nsopFuncional").html(data.nsopFuncional);
+					$("#nClasActivo").html(data.nClasActivo);
+					$("#nArea").html(data.nArea);
+					$("#nConfidencialidad").html(data.nConfidencialidad);
+					$("#nIntegridad").html(data.nIntegridad);
+					$("#nDisponabilidad").html(data.nDisponabilidad);
+					$("#nRemitente").html(data.nRemitente);
+					$("#nUbicacion").html(data.nUbicacion);
+					$("#nCustodioActivo").html(data.nCustodioActivo);
+					$("#nSopTecnico").html(data.nSopTecnico);
+					$("#nTactivo").html(data.nTactivo);
+					$("#nTipoAlma").html(data.nTipoAlma);
+					$("#nEntradaActivo").html(data.nEntradaActivo);*/
+										
+					
+					
+				},
+				error:    function(xhr,err){ 
+					alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+				}
+			});
+	}
+ </script>
+ 
+   <script>
+		   
+	function guardar(){
+		
+		
+		var activo = $("#inActivo").val();
+		var valCo = $("#impaConf").val();
+		var valInte = $("#impaInt").val();
+		var valDis = $("#impaDisp").val();
+		var impTotal = $("#impaTot").val();
+		var riesInhe = $("#riesgIn").val();
+		
+		alert(impTotal.length);
+		
+		if (){
+			alert("No pueden haber valores en blanco");
+		}
+		else{
+		$.ajax({
+				data: {nomactivo: activo, confi: valCo, integri: valInte, disp: valDis, iTotal: impTotal, rInhe: riesInhe },
+				url:   'GuardarCalculos.php',
+				type:  'post',
+				
+				beforeSend: function(){			
+				},
+				success: function(data){
+					var resuesta = data.val();
+					alert(data);
+				},
+				error:    function(xhr,err){
+					//alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status+"\n \n responseText: "+xhr.responseText);
+				}
+			});
+		}
+	}
+ </script>
+
+
 </html>
