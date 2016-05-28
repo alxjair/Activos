@@ -77,7 +77,7 @@
                         </li>
                         
                         <li>
-                            <a href="GenerarReporte.php">
+                            <a href="../Reportes/Reportes.php">
                                 <span class="ca-icon">a</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Generar Reportes</h2>

@@ -1,14 +1,14 @@
 <?php 
 
 require ('../class.Conexion.php');
+
     
 $modo=isset($_GET['modo']) ? $_GET['modo'] : 'default';
-
 switch ($modo){
     case 'insertActivo':  
         if (isset($_POST['insetAct'])){
-			
-		 $idActivo= $_POST['CodActivo'];
+
+		$idActivo= $_POST['CodActivo'];
 		 $nomActivo = $_POST['NomActivo'];
 		 $proActivo = $_POST['NomPropietario'];
 		 $descActivo = $_POST['DescActivo'];
@@ -24,8 +24,10 @@ switch ($modo){
 		 $valIntegri = $_POST['ValIntegridad'];
 		 $valDisp = $_POST['ValDisponibilidad'];
 		 $tiActivo = $_POST['TipoActivo'];
-         include ('class.Anadir.php');
-         $add = new Anadir ($idActivo, $nomActivo, $proActivo, $descActivo, $sopFunActivo, $clasActivo, $valEntrada, $valRemitente, $ubiActivo, $cusActivo, $sopActivo, $malmaActivo, $valConfiden, $valIntegri, $valDisp, $tiActivo);
+		 $area = $_POST['Area'];
+
+     	include ('class.Anadir.php');
+         $add = new Anadir ($idActivo, $nomActivo, $proActivo, $descActivo, $sopFunActivo, $clasActivo, $valEntrada, $valRemitente, $ubiActivo, $cusActivo, $sopActivo, $malmaActivo, $valConfiden, $valIntegri, $valDisp, $tiActivo,$area);
          $add -> insertActivo();
         }
         else {
@@ -42,11 +44,6 @@ switch ($modo){
        # $template->display('public/Index.html');
     break;
 }
-
-
-
-
-
 
 
 ?>     

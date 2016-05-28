@@ -1,4 +1,8 @@
 
+
+<?php
+	
+
 /**
 ******************************************************
 * @file GuardarCalculos.php
@@ -8,8 +12,6 @@
 * @date Mayo 2016
 *******************************************************/
 
-<?php
-	
 require ('../class.Conexion.php');
 include ('class.CalcRiesgos.php');
 $conexion = new Conexion();

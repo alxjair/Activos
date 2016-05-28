@@ -1,4 +1,8 @@
 
+
+
+<?php
+
 /**
 ******************************************************
 * @file CalcularRiesgos.php
@@ -7,9 +11,6 @@
 * @version 3.0
 * @date Mayo 2016
 *******************************************************/
-
-
-<?php
 	
 require ('../class.Conexion.php');
 include ('class.CalcRiesgos.php');

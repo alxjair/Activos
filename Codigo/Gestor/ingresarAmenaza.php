@@ -92,6 +92,19 @@
                        <option value="">75%-89%</option>
                        <option value="">90%-100%</option>
                     </select>
+                    <br>
+                </div>
+                
+                <label class="col-sm">Probabilidad de Ocurrencia</label>
+                <div>
+                    <select class="form-control" required="" id="Prob">
+                       <option value="">-Seleccione una degradacion-</option>
+                       <option value="">MUY FRECUENTE</option>
+                       <option value="">PROBABLE</option>
+                       <option value="">PUEDE OCURRIRE</option>
+                       <option value="">EVENTUALMENTE</option>
+                       <option value="">RARA VEZ</option>
+                    </select>
                 </div>
 
         <div>
@@ -193,12 +206,13 @@
 		var amenaza = $("#Amenazas").val();
 		var vulnerabilidad = $("#Vulnerabilidad").val();
 		var riesgos = $("#Riesgo").val();
-		var degradacion = $("#Deg").val();
+		var degradacion = $("#Deg").val();Prob
+		var probabi = $("#Prob").val();
 		
 		alert(activo);
 		$.ajax({
 
-				data: {nomactivo: activo, vAmenaza: amenaza, vulne: vulnerabilidad, ries: riesgos, degra: degradacion},
+				data: {nomactivo: activo, vAmenaza: amenaza, vulne: vulnerabilidad, ries: riesgos, degra: degradacion, proba: probabi},
 				url:   'GuardarAmenazas.php',
 				type:  'post',
 				dataType: 'json',

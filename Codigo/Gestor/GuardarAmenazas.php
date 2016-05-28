@@ -8,6 +8,7 @@ $valorAmenaza = $_POST['vAmenaza'];
 $Vulnerabilidad = $_POST['vulne'];
 $Riesgos = $_POST['ries'];
 $Degradacion = $_POST['degra'];
+$Probabilidad = $_POST['proba'];
 
 var_dump ($valorAmenaza);
 
@@ -27,7 +28,7 @@ while ($row = $conexion->recorrer($consulta1)){
     $idAmenaza = $row["Id_Amenazas"];
 }
 
-$sql = "INSERT INTO `activo_has_amenazas`(`Activo_Id_Activo`, `Amenazas_Id_Amenazas`, `Vulnerabilidades`, `Riesgos`) VALUES ('$idActivo','$idAmenaza','$Vulnerabilidad','$Riesgos')";
+$sql = "INSERT INTO `activo_has_amenazas`(`Amenazas_Id_Amenazas`, `Activo_Id_Activo`, `Probabilidad_Ocurrencia`, `Vulnerabilidades`, `Riesgos`) VALUES ('$idAmenaza','$idActivo','$Vulnerabilidad','$Riesgos')";
 
 $sql1 = "UPDATE activo SET Degradacion = '$Degradacion' WHERE Id_Activo='$idActivo';";
 
