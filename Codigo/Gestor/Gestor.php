@@ -54,7 +54,7 @@
                         </li>
                         
                         <li>
-                            <a href="EditarActivos.php">
+                            <a href="../Administrador/EditarActivos.php">
                                 <span class="ca-icon">S</span>
                                 <div class="ca-content">
                                     <h2 class="ca-main">Modificar Activos</h2>

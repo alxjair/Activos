@@ -1,4 +1,9 @@
 
+
+
+<?php
+
+
 /**
 ******************************************************
 * @file GuardarCalculos.php
@@ -7,9 +12,6 @@
 * @version 3.0
 * @date Mayo 2016
 *******************************************************/
-
-
-<?php
 require ('../class.Conexion.php');
 
 $conexion = new Conexion();

@@ -29,13 +29,8 @@ class Acceso {
             }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
-                header('location: location: http://localhost/Activos/Codigo/Gestor/Gestor.php');
-            }else  if ($dato['Perf_Usuario_idPerf_Usuario']== 2){ 
-                session_start();
-                $_SESSION ['user']= $this->user;
-                header('location: /Administrador/Gestor.php');
-            }
-            else  if ($dato['Perf_Usuario_idPerf_Usuario']== 4){ 
+                header('location: http://localhost/activos/Codigo/Gestor/Gestor.php');
+            } else  if ($dato['Perf_Usuario_idPerf_Usuario']== 4){ 
                 session_start();
                 $_SESSION ['user']= $this->user;
                 header('location: location: http://localhost/Activos/Codigo/Auditor/Auditor.php');
